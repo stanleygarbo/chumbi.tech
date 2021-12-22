@@ -1,4 +1,4 @@
-import { IColors } from "./IColors";
+import { IColors } from "../IColors";
 
 export interface IThemeContext {
   isDarkMode: boolean;

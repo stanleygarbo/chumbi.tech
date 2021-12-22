@@ -1,13 +1,31 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 import styled, { css } from "styled-components";
-import SkewedBorder from "../components/patterns/SkewedBorder";
-import Socials from "../components/Socials";
+import Hero from "../components/home/Hero";
+import Tools from "../components/home/Tools";
 import { useTheme } from "../contexts/themeContext";
+import { useWallet } from "../contexts/walletContext";
 import { IColors } from "../interfaces/IColors";
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
 
 const Home: NextPage = () => {
   const { colors, isDarkMode } = useTheme();
+
+  const { connectWallet, current } = useWallet();
+
+  useEffect(() => {
+    if (connectWallet) {
+      connectWallet();
+    }
+
+    console.log(current);
+  }, [current]);
 
   return (
     <Container colors={colors} isDarkMode={isDarkMode}>
@@ -17,32 +35,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <section className="hero">
-          <div className="hero__container container">
-            <div className="hero__container__left-txt">FAN-MADE</div>
-            <div className="hero__container__left-socials">
-              <Socials isHorizontal={false} />
-            </div>
-
-            <div className="hero__content">
-              <h1>
-                Welcome to
-                <br /> Chumbi <br />
-                Technologies!
-              </h1>
-              <p>
-                A fan-made website dedicated to Chumbi Valley. Chumbi
-                Technologies offers free tools and guides for the chumbi
-                community.
-              </p>
-            </div>
-
-            <img className="hero__nft" alt="" src="/chmb.png"></img>
-          </div>
-          <div className="hero__bg-txt">CHUMBI</div>
-          <SkewedBorder position="bottom-right" bg={colors.bg1} />
-        </section>
-        <section className="tools"></section>
+        <Hero />
+        <Tools />
       </main>
     </Container>
   );
@@ -55,104 +49,6 @@ const Container = styled.div<{ colors: IColors; isDarkMode: boolean }>`
       width: 100%;
       /* background-color: #021f1c; */
       background-color: ${isDarkMode ? colors.bg2 : colors.bg1};
-
-      .hero {
-        width: 100%;
-        position: relative;
-
-        height: 670px;
-        overflow: hidden;
-        /* border-bottom: 2px solid ${colors.accent}; */
-
-        &::before {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 2px;
-          bottom: 0px;
-          left: -50px;
-          background: ${colors.accent};
-          z-index: 3;
-        }
-
-        &__container {
-          z-index: 2;
-          position: relative;
-          max-width: 1100px;
-          height: 100%;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          padding-top: 60px;
-
-          &__left-txt {
-            color: ${colors.text1};
-            font-weight: 500;
-            position: absolute;
-            left: -30px;
-            transform: rotate(-90deg) translateX(50px);
-          }
-
-          &__left-socials {
-            position: absolute;
-            bottom: 20px;
-            left: 5px;
-          }
-        }
-
-        &__content {
-          max-width: 500px;
-          padding-left: 100px;
-          z-index: 2;
-
-          h1 {
-            color: ${colors.text1};
-            font-size: 40px;
-          }
-
-          p {
-            margin: 50px 0px;
-            line-height: 30px;
-            font-weight: 300;
-            color: ${colors.text2};
-          }
-        }
-
-        &__pattern {
-          height: 670px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 1;
-        }
-
-        &__bg-txt {
-          color: ${colors.text3};
-          font-size: 200px;
-          font-weight: 890;
-          position: absolute;
-          pointer-events: none;
-          height: 670px;
-          display: flex;
-          align-items: center;
-
-          letter-spacing: 20px;
-          top: 0;
-          left: -50px;
-        }
-
-        &__nft {
-          width: 1000px;
-
-          position: absolute;
-          top: -100px;
-          right: -250px;
-        }
-      }
-    }
-    .tools {
-      min-height: 100vh;
-      background-color: ${colors.bg1};
     }
   `}
 `;

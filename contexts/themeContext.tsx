@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { colors } from "../theme/colors";
-import { IThemeContext } from "../interfaces/IThemeContext";
+import { IThemeContext } from "../interfaces/contexts/IThemeContext";
 
 const themeContext = createContext<IThemeContext>({
   isDarkMode: false,

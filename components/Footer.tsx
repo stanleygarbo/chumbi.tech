@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Container colors={colors}>
       <div className="footer-container">
-        <p>Chumbi Technologies is a fan-made website</p>
+        <p>Chumbi Technologies is a fan-made website dedicated to the game</p>
       </div>
     </Container>
   );
@@ -19,7 +19,6 @@ const Container = styled.footer<{ colors: IColors }>`
     background-color: ${colors.bg3};
     color: ${colors.text2};
     border-top: 2px solid ${colors.border1};
-    
 
     .footer-container {
       max-width: 1100px;

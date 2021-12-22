@@ -1,0 +1,9 @@
+GET https://api.opensea.io/api/v1/asset_contract/0x5492ef6aeeba1a3896357359ef039a8b11621b45 HTTP/1.1
+
+###
+
+GET https://api.opensea.io/api/v1/collection/chumbivalleyofficial HTTP/1.1
+
+###
+
+GET https://api.opensea.io/api/v1/asset/0x5492ef6aeeba1a3896357359ef039a8b11621b45/2671 HTTP/1.1
