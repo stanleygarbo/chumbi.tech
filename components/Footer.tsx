@@ -62,13 +62,19 @@ const Footer = () => {
             <h3>Follow me on</h3>
             <ul>
               <li>
-                <Link href="/">Twitter</Link>
+                <a href="https://twitter.com/digital_mad_lad" target="blank">
+                  Twitter
+                </a>
               </li>
               <li>
-                <Link href="/">Facebook</Link>
+                <a href="https://www.facebook.com/vangeance.gg" target="blank">
+                  Facebook
+                </a>
               </li>
               <li>
-                <Link href="/">Instagram</Link>
+                <a href="https://instagram.com/garbo.stanley" target="blank">
+                  Instagram
+                </a>
               </li>
             </ul>
           </div>
