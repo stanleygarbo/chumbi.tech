@@ -3,13 +3,13 @@ import { colors } from "../theme/colors";
 import { IThemeContext } from "../interfaces/contexts/IThemeContext";
 
 const themeContext = createContext<IThemeContext>({
-  isDarkMode: false,
+  isDarkMode: true,
   toggleDarkMode: () => {},
-  colors: colors.darkMode,  
+  colors: colors.darkMode,
 });
 
 const useThemeContext = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
@@ -18,6 +18,10 @@ const useThemeContext = () => {
     }
     if (theme === "light") setIsDarkMode(false);
     if (theme === "dark") setIsDarkMode(true);
+
+    //always dark mode
+
+    setIsDarkMode(true);
   }, []);
 
   useEffect(() => {

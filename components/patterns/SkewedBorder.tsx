@@ -13,7 +13,7 @@ const SkewedBorder: React.FC<ISkewedBorder> = ({ position, bg }) => {
     right: position.includes("right") ? -55 : "none",
     transform: "skew(-45deg)",
     background: bg ? bg : "transparent",
-    borderLeft: `3px solid ${colors.accent}`,
+    borderLeft: `3px solid ${colors.border1}`,
   };
 
   return <StyledSkewedBorder style={style}></StyledSkewedBorder>;

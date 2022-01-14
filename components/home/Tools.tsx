@@ -5,48 +5,87 @@ import SkewedRect from "../patterns/SkewedRect";
 // import { CgTrack } from "react-icons/cg";
 // import { AiOutlinePicture } from "react-icons/ai";
 import Button from "../Button";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import { useWallet } from "../../contexts/walletContext";
 
 const Tools = () => {
   const { colors } = useTheme();
+  const { push } = useRouter();
+  const { current } = useWallet();
 
   return (
     <Container colors={colors}>
       <div className="tools">
         <div className="tools__title">
-          <SkewedRect>TOOLS</SkewedRect>
+          <SkewedRect background={colors.border1} foreground={colors.text1}>
+            TOOLS
+          </SkewedRect>
         </div>
         <div className="tools__cards">
           <div className="tools__cards__card">
             <div className="tools__cards__card__icon">
-              <h2>Tracker</h2>
-              <p>Keep track of your chumbi and fostership earnings.</p>
-              {/* <CgTrack /> */}
-              <Button>Open</Button>
+              <Image
+                src="/tool-icons/scholar-chumbi.png"
+                placeholder="blur"
+                blurDataURL="/tool-icons/scholar-chumbi.png"
+                width={86.88}
+                height={100}
+                alt=""
+              />
             </div>
+            <h2>Tracker</h2>
+            <p>Keep track of your chumbi and fostership earnings.</p>
+            {/* <CgTrack /> */}
+            <Button
+              onClick={() =>
+                current ? push("/tracker/chumbi") : push("/tracker")
+              }
+            >
+              Open
+            </Button>
           </div>
           <div className="tools__cards__card">
+            {/* <AiOutlinePicture /> */}
             <div className="tools__cards__card__icon">
-              {/* <AiOutlinePicture /> */}
-
-              <h2>Avatar Generator</h2>
-              <p>Get a chumbatar just by pasting a particular chumbi's ID.</p>
-              <Button>Open</Button>
+              <Image
+                src="/tool-icons/avatar.png"
+                placeholder="blur"
+                blurDataURL="/tool-icons/avatar.png"
+                width={100}
+                height={100}
+                alt=""
+              />
             </div>
+            <h2>Avatar Generator</h2>
+            <p>
+              Get a chumbatar just by pasting a particular chumbi&apos;s ID.
+            </p>
+            <Button onClick={() => push("/chumbi-avatar-generator")}>
+              Open
+            </Button>
           </div>
 
           <div className="tools__cards__card">
+            {/* <AiOutlinePicture /> */}
             <div className="tools__cards__card__icon">
-              {/* <AiOutlinePicture /> */}
-
-              <h2>Breeding Guide</h2>
-              <p>
-                Learn which chumbi you will get when breeding certain types.
-              </p>
-              <Button>Open</Button>
+              <Image
+                src="/tool-icons/hatching-chumbi.png"
+                placeholder="blur"
+                blurDataURL="/tool-icons/hatching-chumbi.png"
+                height={100}
+                width={121.2}
+                alt=""
+              />
             </div>
+            <h2>Breeding Guide</h2>
+            <p>Learn which chumbi you will get when breeding certain types.</p>
+            <Button onClick={() => push("/breeding-guide")}>Open</Button>
           </div>
         </div>
       </div>
+
+      <div className="bg-txt">TOOLS AND STUFF</div>
     </Container>
   );
 };
@@ -54,36 +93,165 @@ const Tools = () => {
 const Container = styled.div<{ colors: IColors }>`
   ${({ colors }) => css`
     background: ${colors.bg1};
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+
+    .bg-txt {
+      color: ${colors.text4};
+      font-size: 200px;
+      font-weight: 890;
+      position: absolute;
+      pointer-events: none;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      letter-spacing: 20px;
+      top: 0;
+      z-index: -2;
+
+      @media (max-width: 1100px) {
+        white-space: unset;
+        text-align: center;
+        left: unset;
+      }
+    }
 
     .tools {
-      max-width: 1100px;
+      max-width: 1140px;
       /* min-height: 100vh; */
-      /* border-left: 1px solid ${colors.accent}; */
+      border-left: 1px solid ${colors.border1};
+      padding: 0 20px;
       margin: 0 auto;
       position: relative;
 
+      &::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 8px;
+        background: ${colors.accent};
+        top: 0px;
+        left: 0px;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        background: ${colors.border1};
+        top: 140px;
+        left: 100px;
+      }
+
       &__title {
-        margin-left: 40px;
+        margin: 0 auto;
+        width: fit-content;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background: ${colors.border1};
+          bottom: -40px;
+          left: -100px;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          background: ${colors.border1};
+          bottom: -40px;
+          left: 100px;
+        }
       }
 
       &__cards {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        /* display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); */
+        display: flex;
+        flex-wrap: wrap;
         padding: 80px 0px;
-
-        h2 {
-          color: ${colors.text1};
-        }
-
-        p {
-          color: ${colors.text2};
-          margin: 30px 0px;
-        }
+        gap: 20px;
+        justify-content: center;
 
         &__card {
-          padding: 20px 50px 20px 50px;
-          border-left: 2px solid ${colors.border1};
-          width: 370px;
+          text-align: center;
+          padding: 20px;
+          /* border-left: 2px solid ${colors.border1}; */
+          width: 340px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+
+          &:nth-child(1) {
+            &::before {
+              content: "";
+              position: absolute;
+              width: 7px;
+              height: 7px;
+              background: ${colors.accent};
+              bottom: -10px;
+              right: 0px;
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              background: ${colors.border1};
+              left: -10px;
+              bottom: -10px;
+            }
+          }
+
+          &:nth-child(3) {
+            &::before {
+              content: "";
+              position: absolute;
+              width: 7px;
+              height: 7px;
+              background: ${colors.accent};
+              top: -10px;
+              right: 0px;
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              width: 10px;
+              height: 15px;
+              background: ${colors.border1};
+              right: -10px;
+              bottom: 0px;
+            }
+          }
+
+          h2 {
+            color: ${colors.text1};
+            margin-top: 20px;
+          }
+
+          p {
+            color: ${colors.text2};
+            margin: 30px 0px;
+          }
+
+          &__icon {
+            position: relative;
+            bottom: -10px;
+          }
         }
       }
     }

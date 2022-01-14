@@ -1,31 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
 import styled, { css } from "styled-components";
+import ViewYourChumbi from "../components/home/ViewYourChumbi";
 import Hero from "../components/home/Hero";
+import Others from "../components/home/Others";
 import Tools from "../components/home/Tools";
 import { useTheme } from "../contexts/themeContext";
-import { useWallet } from "../contexts/walletContext";
 import { IColors } from "../interfaces/IColors";
-
-declare global {
-  interface Window {
-    ethereum: any;
-  }
-}
 
 const Home: NextPage = () => {
   const { colors, isDarkMode } = useTheme();
-
-  const { connectWallet, current } = useWallet();
-
-  useEffect(() => {
-    if (connectWallet) {
-      connectWallet();
-    }
-
-    console.log(current);
-  }, [current]);
 
   return (
     <Container colors={colors} isDarkMode={isDarkMode}>
@@ -37,6 +21,8 @@ const Home: NextPage = () => {
       <main>
         <Hero />
         <Tools />
+        <ViewYourChumbi />
+        <Others />
       </main>
     </Container>
   );

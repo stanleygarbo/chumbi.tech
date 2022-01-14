@@ -30,22 +30,24 @@ const InputModal: React.FC<IInputModal> = ({ title, onSubmit }) => {
   return (
     <Container colors={colors}>
       <h2>
-        <img
+        {/* <img
           src="https://cdn.discordapp.com/emojis/910733798843510824.png?size=48"
           alt="chumbi"
-        />
+        /> */}
         &nbsp;
         {title}
         &nbsp;
-        <img
+        {/* <img
           src="https://cdn.discordapp.com/emojis/910732933508268063.png?size=48"
           alt="chumbi"
-        />
+        /> */}
       </h2>
 
-      <p className="p">You can use your chumbi's ID in order to find it. </p>
+      <p className="p">
+        You can use your chumbi&apos;s ID in order to find it.{" "}
+      </p>
 
-      <p className="desc">What's your Chumbi's ID?</p>
+      <p className="desc">What&apos;s your Chumbi&apos;s ID?</p>
       <Formik
         validationSchema={ChubmiIDSchema}
         initialValues={{ id: "" }}

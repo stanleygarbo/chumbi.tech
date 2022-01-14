@@ -5,11 +5,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useTheme } from "../contexts/themeContext";
 import { IColors } from "../interfaces/IColors";
 
-const Button: React.FC<IButton> = ({ children, onClick }) => {
+const Button: React.FC<IButton> = ({ children, onClick, style }) => {
   const { colors } = useTheme();
 
   return (
-    <StyledBtn onClick={onClick} colors={colors}>
+    <StyledBtn onClick={onClick} colors={colors} style={style}>
       <div className="btn-icon">
         <IoIosArrowForward />
       </div>
@@ -40,7 +40,7 @@ const StyledBtn = styled.button<{ colors: IColors }>`
 
       display: grid;
       place-items: center;
-      padding-left: 3px;
+      padding-left: 2px;
       margin-right: 5px;
     }
   `}
