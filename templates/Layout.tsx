@@ -40,7 +40,7 @@ ${({ colors, isHomePage }) => css`
   html {
     --color-rare: #00bf4b;
     --color-epic: #09b7fa;
-    --color-legend: #fb9d05;
+    --color-legendary: #fb9d05;
     --color-mythic: #bc35de;
 
     /* tier 1 colors */

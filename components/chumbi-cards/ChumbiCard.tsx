@@ -76,7 +76,7 @@ const Container = styled.div<{ colors: IColors }>`
         &--epic {
           background: var(--color-epic);
         }
-        &--legend {
+        &--legendary {
           background: var(--color-legend);
         }
         &--mythic {
