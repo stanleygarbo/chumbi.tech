@@ -73,13 +73,7 @@ const useWalletContext = () => {
     }
   };
 
-  const stakingData = async ({
-    address,
-    duration,
-  }: {
-    address: string;
-    duration: 90 | 180 | 365;
-  }) => {
+  const stakingData = async ({ duration }: { duration: 90 | 180 | 365 }) => {
     const baseUnitizeAndToFixedIfNecessary = (rewards: number) =>
       +parseFloat(Web3.utils.fromWei(rewards.toString())).toFixed(2);
 
@@ -98,10 +92,10 @@ const useWalletContext = () => {
         );
 
         const rewards = await CHMBStakingContract.methods
-          .earned(address)
+          .earned(current)
           .call();
         const staked = await CHMBStakingContract.methods
-          .balanceOf(address)
+          .balanceOf(current)
           .call();
         const periodFinish = await CHMBStakingContract.methods
           .periodFinish()
