@@ -5,13 +5,7 @@ export interface IWalletContext {
   connectWallet?: () => void;
   tokenURI: (tokenID: number) => Promise<any> | void;
   totalChumbi: (address: string) => Promise<number> | void;
-  stakingData?: ({
-    address,
-    duration,
-  }: {
-    address: string;
-    duration: 90 | 180 | 365;
-  }) => Promise<
+  stakingData?: ({ duration }: { duration: 90 | 180 | 365 }) => Promise<
     | {
         staked: number;
         rewards: number;
