@@ -17,6 +17,12 @@ const TrackerNav: React.FC = () => {
           <li className={pathname === "/tracker/chumbi" ? "active" : ""}>
             <Link href="/tracker/chumbi">Your Chumbi</Link>
           </li>
+
+          <li
+            className={pathname === "/tracker/staking-rewards" ? "active" : ""}
+          >
+            <Link href="/tracker/staking-rewards">Staking rewards</Link>
+          </li>
           {/* <li className={pathname === "/tracker/chumbi-finder" ? "active" : ""}>
             <Link href="/tracker/chumbi-finder">Chumbi Finder</Link>
           </li> */}
