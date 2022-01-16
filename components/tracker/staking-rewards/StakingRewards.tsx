@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 import { useTheme } from "../../../contexts/themeContext";
 import { IColors } from "../../../interfaces/IColors";
 import { IStakingRewards } from "../../../interfaces/tracker/staking-rewards/IStakingRewards";
+import { addCommaToNumber } from "../../../util/addCommaToNumber";
 
 const StakingRewards: React.FC<IStakingRewards> = ({ data }) => {
   const { colors } = useTheme();
@@ -17,21 +18,25 @@ const StakingRewards: React.FC<IStakingRewards> = ({ data }) => {
           <div className="stats__box__title">Staked</div>
           <div className="stats__box__val">
             <Image src="/chmb-token.png" width={20} height={20} alt="" /> &nbsp;
-            {data.staked !== undefined ? data.staked : "---"}
+            {data.staked !== undefined ? addCommaToNumber(data.staked) : "---"}
           </div>
         </div>
         <div className="stats__box">
           <div className="stats__box__title">Rewards</div>
           <div className="stats__box__val">
             <Image src="/chmb-token.png" width={20} height={20} alt="" /> &nbsp;
-            {data.rewards !== undefined ? data.rewards : "---"}
+            {data.rewards !== undefined
+              ? addCommaToNumber(data.rewards)
+              : "---"}
           </div>
         </div>
         <div className="stats__box">
           <div className="stats__box__title">Staking Cap</div>
           <div className="stats__box__val">
             <Image src="/chmb-token.png" width={20} height={20} alt="" /> &nbsp;
-            {data.stakingCap !== undefined ? data.stakingCap : "---"}
+            {data.stakingCap !== undefined
+              ? addCommaToNumber(data.stakingCap)
+              : "---"}
           </div>
         </div>
         <div className="stats__box">
