@@ -48,6 +48,12 @@ const polygonWeb3 = new Web3(polygonProvider);
 const useWalletContext = () => {
   const [current, setCurrent] = useState<string>();
 
+  const baseUnitizeAndToFixedIfNecessary = (rewards: number) =>
+    Number(+parseFloat(Web3.utils.fromWei(rewards.toString())).toFixed(2));
+
+  const baseUnitize = (rewards: number) =>
+    Number(Number(Web3.utils.fromWei(rewards.toString())).toFixed(0));
+
   const ChumbiContract = new polygonWeb3.eth.Contract(
     ChumbiABI.ContractABI as AbiItem[],
     ChumbiContractAddress
@@ -83,11 +89,6 @@ const useWalletContext = () => {
 
   const stakingData = async ({ duration }: { duration: 90 | 180 | 365 }) => {
     if (!current) return {};
-    const baseUnitizeAndToFixedIfNecessary = (rewards: number) =>
-      Number(+parseFloat(Web3.utils.fromWei(rewards.toString())).toFixed(2));
-
-    const baseUnitize = (rewards: number) =>
-      Number(Number(Web3.utils.fromWei(rewards.toString())).toFixed(0));
 
     const minPercentage =
       duration === 90 ? 100 : duration === 180 ? 150 : 196.72129;
@@ -167,8 +168,10 @@ const useWalletContext = () => {
 
   const totalCHMB = async (address: string) => {
     try {
-      const balance = await CHMBContract.methods.balanceOf(address).call();
-      return balance;
+      const balance: number = await CHMBContract.methods
+        .balanceOf(address)
+        .call();
+      return Number(baseUnitizeAndToFixedIfNecessary(balance));
     } catch (err) {
       if (err instanceof Error) console.error(err.message);
       return -1;

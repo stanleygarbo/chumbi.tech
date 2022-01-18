@@ -7,6 +7,7 @@ import StakingRewards from "../../components/tracker/staking-rewards/StakingRewa
 import TabSelector from "../../components/tracker/staking-rewards/TabSelector";
 import { useTheme } from "../../contexts/themeContext";
 import { useWallet } from "../../contexts/walletContext";
+import { ITokens } from "../../interfaces/tracker/staking-rewards/IStakingRewards";
 
 type IStakingData = {
   staked?: number;
@@ -25,7 +26,10 @@ const StakingRewardsPage: NextPage = () => {
     d180?: IStakingData;
     d365?: IStakingData;
   }>();
-  const { stakingData, current } = useWallet();
+  const [totalTokens, setTotalTokens] = useState<ITokens>({
+    CHMB: -1,
+  });
+  const { stakingData, current, totalCHMB } = useWallet();
   const { colors } = useTheme();
 
   useEffect(() => {
@@ -54,6 +58,11 @@ const StakingRewardsPage: NextPage = () => {
         if (stakeData365 && _isMounted) {
           joined.d365 = stakeData365;
           setData({ ...joined, d365: stakeData365 });
+        }
+
+        if (current) {
+          const res = await totalCHMB(current);
+          if (res) setTotalTokens({ CHMB: res });
         }
       }
     })();
@@ -100,6 +109,7 @@ const StakingRewardsPage: NextPage = () => {
             setSelectedDuration={setSelectedDuration}
           />
           <StakingRewards
+            totalTokens={totalTokens}
             stakingData={
               data && selectedDuration === 90
                 ? data.d90

@@ -7,7 +7,10 @@ import { IColors } from "../../../interfaces/IColors";
 import { IStakingRewards } from "../../../interfaces/tracker/staking-rewards/IStakingRewards";
 import { addCommaToNumber } from "../../../util/addCommaToNumber";
 
-const StakingRewards: React.FC<IStakingRewards> = ({ stakingData }) => {
+const StakingRewards: React.FC<IStakingRewards> = ({
+  stakingData,
+  totalTokens,
+}) => {
   const { colors } = useTheme();
 
   return (
@@ -39,7 +42,9 @@ const StakingRewards: React.FC<IStakingRewards> = ({ stakingData }) => {
               <div className="stats__data__box__title small-title">
                 Available in wallet
               </div>
-              <div className="stats__data__box__val big-value">0.11</div>
+              <div className="stats__data__box__val big-value">
+                {totalTokens?.CHMB > -1 ? totalTokens.CHMB : "---"}
+              </div>
             </div>
           </div>
         </div>

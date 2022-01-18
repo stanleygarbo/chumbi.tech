@@ -1,3 +1,7 @@
+export type ITokens = {
+  CHMB: number;
+};
+
 export interface IStakingRewards {
   stakingData?: {
     staked?: number;
@@ -8,4 +12,5 @@ export interface IStakingRewards {
     APR?: number;
     totalSupply?: number;
   };
+  totalTokens: ITokens;
 }
