@@ -70,7 +70,7 @@ const StakingRewardsPage: NextPage = () => {
     return () => {
       _isMounted = false;
     };
-  }, [current, stakingData]);
+  }, [current, stakingData, totalCHMB]);
 
   return (
     <Container className="tracker" style={{ backgroundColor: colors.bg2 }}>
