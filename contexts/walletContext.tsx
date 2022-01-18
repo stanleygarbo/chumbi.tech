@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import { IWalletContext } from "../interfaces/contexts/IWalletContext";
 import ChumbiContractABI from "../contracts/ChumbiABI.json";
 import CHMBStakingContractABI from "../contracts/StakingABI.json";
+import CHMBABI from "../contracts/CHMBABI.json";
 import Web3 from "web3";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { AbiItem } from "web3-utils";
@@ -13,6 +14,7 @@ const walletContext = createContext<IWalletContext>({
   isConnected: false,
   tokenURI: (tokenID: number) => {},
   totalChumbi: (address: string) => {},
+  totalCHMB: (address: string) => {},
 });
 
 declare global {
@@ -22,6 +24,7 @@ declare global {
 }
 
 const ChumbiContractAddress = "0x5492ef6aeeba1a3896357359ef039a8b11621b45";
+const CHMBContractAddress = "0x5492ef6aeeba1a3896357359ef039a8b11621b45";
 const ChumbiABI = ChumbiContractABI;
 const CHMBStaking_90days_ContractAddress =
   "0xaf55804d5ddb764fb444e00d99fec9e52883ee17";
@@ -50,6 +53,11 @@ const useWalletContext = () => {
     ChumbiContractAddress
   );
 
+  const CHMBContract = new BSCWeb3.eth.Contract(
+    CHMBABI as AbiItem[],
+    CHMBContractAddress
+  );
+
   const connectWalletHandler = async () => {
     const { ethereum } = window;
 
@@ -74,11 +82,15 @@ const useWalletContext = () => {
   };
 
   const stakingData = async ({ duration }: { duration: 90 | 180 | 365 }) => {
+    if (!current) return {};
     const baseUnitizeAndToFixedIfNecessary = (rewards: number) =>
-      +parseFloat(Web3.utils.fromWei(rewards.toString())).toFixed(2);
+      Number(+parseFloat(Web3.utils.fromWei(rewards.toString())).toFixed(2));
 
     const baseUnitize = (rewards: number) =>
-      Number(Web3.utils.fromWei(rewards.toString())).toFixed(0);
+      Number(Number(Web3.utils.fromWei(rewards.toString())).toFixed(0));
+
+    const minPercentage =
+      duration === 90 ? 100 : duration === 180 ? 150 : 196.72129;
 
     if (BSCWeb3)
       try {
@@ -91,20 +103,25 @@ const useWalletContext = () => {
             : CHMBStaking_365days_ContractAddress
         );
 
-        const rewards = await CHMBStakingContract.methods
+        const rewards: number = await CHMBStakingContract.methods
           .earned(current)
           .call();
-        const staked = await CHMBStakingContract.methods
+
+        const staked: number = await CHMBStakingContract.methods
           .balanceOf(current)
           .call();
-        const periodFinish = await CHMBStakingContract.methods
+        const periodFinish: number = await CHMBStakingContract.methods
           .periodFinish()
           .call();
-        const stakingTill = await CHMBStakingContract.methods
+        const stakingTill: number = await CHMBStakingContract.methods
           .stakingTill()
           .call();
-        const stakingCap = await CHMBStakingContract.methods
+        const stakingCap: number = await CHMBStakingContract.methods
           .stakingCap()
+          .call();
+
+        const totalSupply: number = await CHMBStakingContract.methods
+          .totalSupply()
           .call();
 
         return {
@@ -113,8 +130,16 @@ const useWalletContext = () => {
           periodFinish,
           stakingTill,
           stakingCap: baseUnitize(stakingCap),
+          totalSupply: baseUnitizeAndToFixedIfNecessary(totalSupply),
+          APR: Number(
+            (
+              (baseUnitize(stakingCap) / baseUnitize(totalSupply)) *
+              minPercentage
+            ).toFixed(2)
+          ),
         };
       } catch (err) {
+        console.error(err instanceof Error && err.message);
         return {};
       }
   };
@@ -140,7 +165,15 @@ const useWalletContext = () => {
     return 0;
   };
 
-  const totalCHMB = async () => {};
+  const totalCHMB = async (address: string) => {
+    try {
+      const balance = await CHMBContract.methods.balanceOf(address).call();
+      return balance;
+    } catch (err) {
+      if (err instanceof Error) console.error(err.message);
+      return -1;
+    }
+  };
 
   const totalLSTS = async () => {};
 
@@ -169,6 +202,7 @@ const useWalletContext = () => {
     tokenURI,
     totalChumbi,
     stakingData,
+    totalCHMB,
   };
 };
 

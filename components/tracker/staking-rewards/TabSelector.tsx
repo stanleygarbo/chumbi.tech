@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import styled, { css } from "styled-components";
 import { useTheme } from "../../../contexts/themeContext";
@@ -16,19 +17,19 @@ const TabSelector: React.FC<ITabSelector> = ({
         onClick={() => setSelectedDuration(90)}
         className={`${selectedDuration === 90 ? "active" : ""}`}
       >
-        90 Days
+        {90 - moment("01-14-2022", "MM-DD-YYYY").add(90, "days").days()} Days
       </button>
       <button
         onClick={() => setSelectedDuration(180)}
         className={`${selectedDuration === 180 ? "active" : ""}`}
       >
-        180 Days
+        {180 - moment("01-15-2022", "MM-DD-YYYY").add(180, "days").days()} Days
       </button>
       <button
         onClick={() => setSelectedDuration(365)}
         className={`${selectedDuration === 365 ? "active" : ""}`}
       >
-        365 Days
+        {365 - moment("01-12-2022", "MM-DD-YYYY").add(365, "days").days()} Days
       </button>
     </Container>
   );
@@ -47,7 +48,6 @@ const Container = styled.div<{ colors: IColors }>`
       border: none;
       border-radius: 5px;
       font-weight: 700;
-      margin: 10px;
       transition: 0.3s;
 
       &:hover {

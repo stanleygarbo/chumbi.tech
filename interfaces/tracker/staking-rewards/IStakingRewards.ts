@@ -1,9 +1,11 @@
 export interface IStakingRewards {
-  data: {
+  stakingData?: {
     staked?: number;
     rewards?: number;
-    periodFinish?: any;
-    stakingTill?: any;
-    stakingCap?: string;
+    periodFinish?: number;
+    stakingTill?: number;
+    stakingCap?: number;
+    APR?: number;
+    totalSupply?: number;
   };
 }

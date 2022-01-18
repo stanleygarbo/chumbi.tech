@@ -12,7 +12,7 @@ const Tracker: NextPage = () => {
     if (current) {
       router.push("/tracker/chumbi");
     }
-  }, [current, router.push]);
+  }, [current, router]);
 
   return (
     <>
