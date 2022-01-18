@@ -66,7 +66,6 @@ const StakingRewardsPage: NextPage = () => {
   return (
     <Container className="tracker" style={{ backgroundColor: colors.bg2 }}>
       <div className="tracker__wrapper">
-        {console.log(data)}
         <Pools
           pools={[
             {
