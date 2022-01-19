@@ -132,13 +132,8 @@ const Container = styled.div`
   background-repeat: no-repeat;
   height: 100vh;
 
-  .tracker__wrapper {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
   .tracker__wrapper2 {
+    min-height: calc(100vh - 390px);
     &__cont {
       max-width: 1140px;
       margin: 0 auto;

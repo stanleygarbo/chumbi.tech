@@ -76,12 +76,16 @@ const Pools: React.FC<IPools> = ({ pools }) => {
 
 const Container = styled.div<{ colors: IColors }>`
   ${({ colors }) => css`
-    margin: 20px 0 50px 0px;
+    overflow-x: auto;
+    padding: 60px 20px;
+
+    max-width: 1140px;
+    margin: 0 auto;
 
     h1 {
       color: ${colors.text1};
       font-size: 25px;
-      margin: 30px 0;
+      margin-bottom: 30px;
     }
 
     .pools {
@@ -157,6 +161,35 @@ const Container = styled.div<{ colors: IColors }>`
               font-size: 14px;
               font-weight: 600;
             }
+          }
+        }
+      }
+      @media (max-width: 966px) {
+        grid-template-columns: 300px 300px 300px;
+        gap: 50px;
+
+        &__card {
+          padding: 15px;
+          background: ${colors.bg1};
+          border-radius: 10px;
+
+          &__info {
+            top: 10px;
+            right: 10px;
+          }
+        }
+      }
+      @media (max-width: 400px) {
+        gap: 20px;
+
+        &__card {
+          padding: 15px;
+          background: ${colors.bg1};
+          border-radius: 10px;
+
+          &__info {
+            top: 10px;
+            right: 10px;
           }
         }
       }

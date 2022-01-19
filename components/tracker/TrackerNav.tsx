@@ -15,20 +15,20 @@ const TrackerNav: React.FC = () => {
       <div className="tracker-nav">
         <ul className="tracker-nav__links">
           <li className={pathname === "/tracker/chumbi" ? "active" : ""}>
-            <Link href="/tracker/chumbi">Your Chumbi</Link>
+            <Link href="/tracker/chumbi">Chumbi</Link>
           </li>
 
           <li
             className={pathname === "/tracker/staking-rewards" ? "active" : ""}
           >
-            <Link href="/tracker/staking-rewards">Staking rewards</Link>
+            <Link href="/tracker/staking-rewards">Staking</Link>
           </li>
           {/* <li className={pathname === "/tracker/chumbi-finder" ? "active" : ""}>
             <Link href="/tracker/chumbi-finder">Chumbi Finder</Link>
           </li> */}
-          <li className={pathname === "/tracker/fostership" ? "active" : ""}>
+          {/* <li className={pathname === "/tracker/fostership" ? "active" : ""}>
             <Link href="/tracker/fostership">Fostership</Link>
-          </li>
+          </li> */}
         </ul>
         <div className="tracker-nav__tickers">
           <CHMBTicker />

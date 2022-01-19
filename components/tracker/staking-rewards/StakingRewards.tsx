@@ -116,11 +116,56 @@ const Container = styled.div<{ colors: IColors }>`
       margin-top: 5px;
     }
 
+    @media (max-width: 410px) {
+      .small-title {
+        font-size: 9px;
+      }
+
+      .big-value {
+        font-size: 14px;
+      }
+    }
+
     section {
       margin-top: 20px;
       display: grid;
       grid-template-columns: 1fr 250px 300px;
       gap: 20px;
+
+      @media (max-width: 1046px) {
+        grid-template-columns: 1fr 250px;
+      }
+
+      @media (max-width: 760px) {
+        grid-template-columns: 200px 1fr 1fr;
+
+        .stats {
+          grid-column: span 3;
+        }
+
+        .total {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: 510px) {
+        grid-template-columns: 1fr;
+
+        .stats {
+          grid-column: span 1;
+          height: 150px;
+
+          img {
+            bottom: 20px;
+            right: -60px;
+            width: 200px;
+          }
+        }
+
+        .total {
+          grid-column: span 1;
+        }
+      }
     }
 
     .total {
@@ -129,7 +174,7 @@ const Container = styled.div<{ colors: IColors }>`
       border-radius: 5px;
 
       &__staked {
-        width: 300px;
+        width: 100%;
         height: 200px;
         border: 1px solid ${colors.bg2};
         border-radius: 10px;
@@ -179,8 +224,11 @@ const Container = styled.div<{ colors: IColors }>`
 
     .additional {
       display: grid;
-
       gap: 20px;
+
+      @media (max-width: 510px) {
+        grid-template-columns: 1fr 1fr;
+      }
 
       &__info {
         background: ${colors.bg4};
