@@ -92,6 +92,7 @@ const ConnectWallet: React.FC = () => {
           rawSocialsStyle={{ width: 250 }}
           socialsStyle={{ height: 100 }}
           iconSize={25}
+          showBorders
         />
       </div>
     </Container>
