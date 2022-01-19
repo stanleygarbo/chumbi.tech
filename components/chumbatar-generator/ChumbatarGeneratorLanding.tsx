@@ -72,6 +72,7 @@ const ChumbatarGeneratorLanding: React.FC = () => {
             rawSocialsStyle={{ width: 230 }}
             socialsStyle={{ height: 110 }}
             iconSize={25}
+            showBorders
           />
         </div>
       </div>

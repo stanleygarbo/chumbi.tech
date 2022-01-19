@@ -13,7 +13,7 @@ const Socials: React.FC<ISocials> = ({
   rawSocialsStyle,
   socialsStyle,
   showTitle,
-  showBorders = false,
+  showBorders,
 }) => {
   const { colors } = useTheme();
 
@@ -26,6 +26,7 @@ const Socials: React.FC<ISocials> = ({
           <img src="/text-decor-right.png" alt="" height={15} />
         </div>
         <RawSocials
+          showBorders={showBorders}
           isHorizontal={isHorizontal}
           colored={colored}
           iconSize={iconSize}
