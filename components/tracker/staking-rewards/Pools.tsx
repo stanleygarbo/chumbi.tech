@@ -109,7 +109,7 @@ const Container = styled.div<{ colors: IColors }>`
 
           &__text {
             position: absolute;
-            bottom: 30px;
+            bottom: 25px;
             display: none;
             z-index: 10;
           }
