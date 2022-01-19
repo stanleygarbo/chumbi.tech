@@ -13,6 +13,7 @@ const Socials: React.FC<ISocials> = ({
   rawSocialsStyle,
   socialsStyle,
   showTitle,
+  showBorders = false,
 }) => {
   const { colors } = useTheme();
 
@@ -35,6 +36,7 @@ const Socials: React.FC<ISocials> = ({
 
   return (
     <RawSocials
+      showBorders={showBorders}
       isHorizontal={isHorizontal}
       colored={colored}
       iconSize={iconSize}
@@ -71,6 +73,7 @@ const RawSocials: React.FC<IRawSocials> = ({
   colored,
   iconSize,
   style,
+  showBorders,
 }) => {
   const { colors } = useTheme();
 
@@ -84,7 +87,7 @@ const RawSocials: React.FC<IRawSocials> = ({
       <a target="blank" href="https://twitter.com/digital_mad_lad">
         <div
           className={`icon ${colored && "tw colored"} ${
-            isHorizontal && "isHorizontal"
+            showBorders && "showBorders"
           }`}
         >
           <BsTwitter />
@@ -94,7 +97,7 @@ const RawSocials: React.FC<IRawSocials> = ({
       <a target="blank" href="https://www.facebook.com/vangeance.gg">
         <div
           className={`icon ${colored && "fb colored"} ${
-            isHorizontal && "isHorizontal"
+            showBorders && "showBorders"
           }`}
         >
           <BsFacebook />
@@ -104,7 +107,7 @@ const RawSocials: React.FC<IRawSocials> = ({
       <a target="blank" href="https://discord.com/users/756368831944982599">
         <div
           className={`icon ${colored && "dc colored"} ${
-            isHorizontal && "isHorizontal"
+            showBorders && "showBorders"
           }`}
         >
           <SiDiscord />
@@ -149,7 +152,7 @@ const RawSocialsContainer = styled.div<{
       color: ${colors.accent};
     }
 
-    .isHorizontal {
+    .showBorders {
       border-left: 1px solid ${colors.border1};
       border-right: 1px solid ${colors.border1};
     }

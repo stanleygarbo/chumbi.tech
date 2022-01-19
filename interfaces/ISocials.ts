@@ -5,6 +5,7 @@ export interface IRawSocials {
   colored?: boolean;
   iconSize?: number;
   style?: React.CSSProperties;
+  showBorders?: boolean;
 }
 
 export interface ISocials extends IRawSocials {

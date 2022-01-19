@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { useScreenSize } from "../../contexts/screenSizeContext";
 import { useTheme } from "../../contexts/themeContext";
 import { IColors } from "../../interfaces/IColors";
 import SkewedBorder from "../patterns/SkewedBorder";
@@ -7,6 +8,8 @@ import CHMBTicker from "../tickers/CHMBTicker";
 
 const Hero = () => {
   const { colors } = useTheme();
+
+  const { screenWidth } = useScreenSize();
 
   return (
     <StyledHero colors={colors}>
@@ -18,7 +21,7 @@ const Hero = () => {
       <div className="hero__container container">
         <div className="hero__container__left-txt">FAN-MADE</div>
         <div className="hero__container__left-socials">
-          <Socials isHorizontal={false} />
+          <Socials isHorizontal={screenWidth < 610} />
         </div>
         <div className="hero__content">
           <h1>
@@ -150,6 +153,20 @@ const StyledHero = styled.section<{ colors: IColors }>`
       right: -250px;
     }
 
+    @media (max-width: 1106px) {
+      .hero__container {
+        &__left-txt {
+          /* display: none; */
+          left: -15px;
+        }
+
+        &__left-socials {
+          /* display: none; */
+          left: 5px;
+        }
+      }
+    }
+
     @media (max-width: 610px) {
       height: 750px;
 
@@ -175,7 +192,7 @@ const StyledHero = styled.section<{ colors: IColors }>`
         }
 
         &__left-socials {
-          display: none;
+          /* display: none; */
         }
       }
     }
