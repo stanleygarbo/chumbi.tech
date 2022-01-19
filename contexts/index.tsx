@@ -1,4 +1,5 @@
 import React, { ReactChild } from "react";
+import { ScreenSizeContextProvider } from "./screenSizeContext";
 import { ThemeContextProvider } from "./themeContext";
 import { WalletContextProvider } from "./walletContext";
 
@@ -7,7 +8,9 @@ const AllContextProviders: React.FC<{ children: ReactChild }> = ({
 }) => {
   return (
     <ThemeContextProvider>
-      <WalletContextProvider>{children}</WalletContextProvider>
+      <ScreenSizeContextProvider>
+        <WalletContextProvider>{children}</WalletContextProvider>
+      </ScreenSizeContextProvider>
     </ThemeContextProvider>
   );
 };
