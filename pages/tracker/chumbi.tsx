@@ -50,7 +50,7 @@ const Chumbi: NextPage = () => {
             !current && "not connected"
           )}
         </h2>
-        {data && <ChumbiCards data={data} />}
+        {data && <ChumbiCards data={data} linkTo="/finder/" />}
       </div>
     </Container>
   );
