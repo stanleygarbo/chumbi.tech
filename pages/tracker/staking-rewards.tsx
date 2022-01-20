@@ -60,7 +60,7 @@ const StakingRewardsPage: NextPage = () => {
           setData({ ...joined, d365: stakeData365 });
         }
 
-        if (current) {
+        if (current && _isMounted) {
           const res = await totalCHMB(current);
           if (res) setTotalTokens({ CHMB: res });
         }
