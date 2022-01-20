@@ -66,12 +66,13 @@ const StyledHero = styled.section<{ colors: IColors }>`
     .hero__ticker {
       position: absolute;
       width: 100%;
-      top: 10px;
+      top: 15px;
       right: 0;
       z-index: 12;
 
       &__wrapper {
-        max-width: 1100px;
+        max-width: 1140px;
+        padding: 0 20px;
         margin: 0 auto;
         display: flex;
         justify-content: flex-end;
