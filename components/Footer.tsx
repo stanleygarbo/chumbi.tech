@@ -14,6 +14,7 @@ const Footer = () => {
 
   if (
     pathname.includes("/tracker") ||
+    pathname.includes("/finder") ||
     pathname.includes("/chumbi-avatar-generator")
   )
     return null;
