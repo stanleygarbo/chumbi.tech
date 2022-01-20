@@ -17,19 +17,52 @@ const TabSelector: React.FC<ITabSelector> = ({
         onClick={() => setSelectedDuration(90)}
         className={`${selectedDuration === 90 ? "active" : ""}`}
       >
-        {90 - moment("01-14-2022", "MM-DD-YYYY").add(90, "days").days()} Days
+        {90 -
+          Number(
+            moment
+              .duration(
+                moment(new Date()).diff(
+                  moment("Friday, January 14, 2022 11:39:27.738 AM")
+                )
+              )
+              .asDays()
+              .toFixed(0)
+          )}{" "}
+        Days
       </button>
       <button
         onClick={() => setSelectedDuration(180)}
         className={`${selectedDuration === 180 ? "active" : ""}`}
       >
-        {180 - moment("01-15-2022", "MM-DD-YYYY").add(180, "days").days()} Days
+        {180 -
+          Number(
+            moment
+              .duration(
+                moment(new Date()).diff(
+                  moment("Friday, January 14, 2022 11:39:27.738 AM")
+                )
+              )
+              .asDays()
+              .toFixed(0)
+          )}{" "}
+        Days
       </button>
       <button
         onClick={() => setSelectedDuration(365)}
         className={`${selectedDuration === 365 ? "active" : ""}`}
       >
-        {365 - moment("01-12-2022", "MM-DD-YYYY").add(365, "days").days()} Days
+        {365 -
+          Number(
+            moment
+              .duration(
+                moment(new Date()).diff(
+                  moment("Friday, January 14, 2022 11:39:27.738 AM")
+                )
+              )
+              .asDays()
+              .toFixed(0)
+          )}{" "}
+        Days
       </button>
     </Container>
   );

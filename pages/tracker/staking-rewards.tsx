@@ -47,6 +47,7 @@ const StakingRewardsPage: NextPage = () => {
         const stakeData90 = await stakingData({ duration: 90 });
         if (stakeData90 && _isMounted) {
           joined.d90 = stakeData90;
+          console.log(stakeData90);
           setData({ d90: stakeData90 });
         }
         const stakeData180 = await stakingData({ duration: 180 });
@@ -79,21 +80,51 @@ const StakingRewardsPage: NextPage = () => {
           pools={[
             {
               name: `${
-                90 - moment("01-14-2022", "MM-DD-YYYY").add(90, "days").days()
+                90 -
+                Number(
+                  moment
+                    .duration(
+                      moment(new Date()).diff(
+                        moment("Friday, January 14, 2022 11:39:27.738 AM")
+                      )
+                    )
+                    .asDays()
+                    .toFixed(0)
+                )
               } days`,
               APR: data?.d90?.APR,
               formula: "SC / TS * 100",
             },
             {
               name: `${
-                180 - moment("01-15-2022", "MM-DD-YYYY").add(180, "days").days()
+                180 -
+                Number(
+                  moment
+                    .duration(
+                      moment(new Date()).diff(
+                        moment("Friday, January 14, 2022 11:39:27.738 AM")
+                      )
+                    )
+                    .asDays()
+                    .toFixed(0)
+                )
               } days`,
               APR: data?.d180?.APR,
               formula: "SC / TS * 150",
             },
             {
               name: `${
-                365 - moment("01-12-2022", "MM-DD-YYYY").add(365, "days").days()
+                165 -
+                Number(
+                  moment
+                    .duration(
+                      moment(new Date()).diff(
+                        moment("Friday, January 14, 2022 11:39:27.738 AM")
+                      )
+                    )
+                    .asDays()
+                    .toFixed(0)
+                )
               } days`,
               APR: data?.d365?.APR,
               formula: "SC / TS * 196.72129",
