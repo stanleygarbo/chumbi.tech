@@ -50,7 +50,7 @@ const BreedingTree = () => {
                   alt=""
                 /> */}
                 <Image
-                  src={`/tier-${tierIdx + 1}/${type}.png`}
+                  src={`/types/${type}.png`}
                   height={70}
                   alt=""
                   width={70}
