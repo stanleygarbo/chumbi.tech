@@ -40,22 +40,24 @@ const ID: NextPage = () => {
   );
 
   return (
-    <Container className="hero">
-      <div className="left">
-        <h1>{data?.name}</h1>
-        <ChumbiImg
-          img={
-            data
-              ? "https://cloudflare-ipfs.com/ipfs/" +
-                data?.image.replace("ipfs://", "")
-              : ""
-          }
-        />
-      </div>
-      <div className="right">
-        <Attributes attributes={data?.attributes} />
-      </div>
-    </Container>
+    <div className="hero">
+      <Container>
+        <div className="left">
+          <h1>{data?.name}</h1>
+          <ChumbiImg
+            img={
+              data
+                ? "https://cloudflare-ipfs.com/ipfs/" +
+                  data?.image.replace("ipfs://", "")
+                : ""
+            }
+          />
+        </div>
+        <div className="right">
+          <Attributes attributes={data?.attributes} />
+        </div>
+      </Container>
+    </div>
   );
 };
 
