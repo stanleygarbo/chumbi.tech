@@ -16,14 +16,12 @@ const Others: React.FC = () => {
           <div className="wrapper__left__gradient"></div>
           {/* <img src="/CV-night-time.png" height="100%" alt="" /> */}
           <div className="wrapper__left__content">
-            <p>
-              Check out our <s>Chumbi condoms</s> breeding guide
-            </p>
+            <p>Check out our breeding guide</p>
             <div className="wrapper__left__content__bottom">
               <h2>
                 Make breeding
                 <br />
-                predictable <s>and pleasurable</s>
+                predictable
               </h2>
               <Button onClick={() => push("/breeding-guide")}>
                 CHECK BREEDING GUIDE
@@ -40,9 +38,9 @@ const Others: React.FC = () => {
             </p>
             <div className="wrapper__right__content__bottom">
               <h2>
-                Just make me
+                Show your
                 <br />
-                rich god damn it
+                support by donating
               </h2>
               <Button onClick={() => push("/donate")}>DONATE</Button>
             </div>
