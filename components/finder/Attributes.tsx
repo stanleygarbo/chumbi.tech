@@ -186,6 +186,16 @@ const Container = styled.div<{ colors: IColors }>`
             display: grid;
             place-items: center;
           }
+
+          @media (max-width: 409px) {
+            &__part {
+              font-size: 15px;
+            }
+            &__type,
+            &__name {
+              font-size: 13px;
+            }
+          }
         }
       }
     }
