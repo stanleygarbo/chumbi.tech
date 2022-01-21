@@ -190,6 +190,30 @@ ${({ colors, isHomePage }) => css`
     }
   }
 
+  .small-title {
+    text-transform: uppercase;
+    color: ${colors.text2};
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .big-value {
+    color: ${colors.text1};
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 410px) {
+    .small-title {
+      font-size: 9px;
+    }
+
+    .big-value {
+      font-size: 14px;
+    }
+  }
+
   .ReactModal__Overlay {
     opacity: 0;
     /* transform: translateX(-100px); */

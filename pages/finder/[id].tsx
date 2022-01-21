@@ -42,7 +42,7 @@ const ID: NextPage = () => {
   return (
     <Container className="hero">
       <div className="left">
-        <h1>Chumbi #{router.query.id}</h1>
+        <h1>{data?.name}</h1>
         <ChumbiImg
           img={
             data
