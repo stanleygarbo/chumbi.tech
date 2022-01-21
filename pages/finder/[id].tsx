@@ -19,7 +19,7 @@ const ID: NextPage = () => {
     if (router.query.id) {
       (async function () {
         const uri = await tokenURI(Number(router.query.id));
-        if (uri) setIpfsID(uri.split("/").reverse()[0]);
+        if (uri) setIpfsID(uri.replace("ipfs://", ""));
       })();
     } else {
       if (router.query.ipfs) setIpfsID(router.query.ipfs?.toString());
@@ -47,7 +47,7 @@ const ID: NextPage = () => {
           img={
             data
               ? "https://cloudflare-ipfs.com/ipfs/" +
-                data?.image.split("/").reverse()[0]
+                data?.image.replace("ipfs://", "")
               : ""
           }
         />

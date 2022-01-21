@@ -18,7 +18,7 @@ const ChumbatarGeneratorPage: NextPage = () => {
         console.log(true);
 
         const uri = await tokenURI(Number(router.query.id));
-        if (uri) setIpfsID(uri.split("/").reverse()[0]);
+        if (uri) setIpfsID(uri.replace("ipfs://", ""));
       })();
     } else {
       if (router.query.ipfs) setIpfsID(router.query.ipfs?.toString());
@@ -46,7 +46,7 @@ const ChumbatarGeneratorPage: NextPage = () => {
           id={Number(router.query.id)}
           image={
             "https://cloudflare-ipfs.com/ipfs/" +
-            data?.image.split("/").reverse()[0]
+            data?.image.replace("ipfs://", "")
           }
         />
       )}
