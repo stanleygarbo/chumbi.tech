@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { useTheme } from "../contexts/themeContext";
 import { IColors } from "../interfaces/IColors";
@@ -33,6 +33,8 @@ const ConnectWallet: React.FC = () => {
   const errorFieldStyle = {
     border: `1px solid ${colors.danger}`,
   };
+
+  const [isRememberChecked, setIsRememberChecked] = useState<boolean>(true);
 
   return (
     <Container colors={colors}>
@@ -77,7 +79,10 @@ const ConnectWallet: React.FC = () => {
           bg={colors.bg1}
           label="Save wallet address for my next visit"
           withLabel
-          checked
+          checked={isRememberChecked}
+          checkHandler={() => {
+            setIsRememberChecked(false);
+          }}
         />
         <div className="divider">or</div>
         <div className="metamask" onClick={connectWallet}>
