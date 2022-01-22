@@ -36,12 +36,23 @@ const StakingRewards: React.FC<IStakingRewards> = ({
                 {stakingData?.rewards !== undefined
                   ? addCommaToNumber(stakingData.rewards)
                   : "---"}
+                &nbsp;
+                <span className="stats__data__box__val__returns">
+                  {stakingData?.staked !== undefined &&
+                  stakingData?.rewards !== undefined
+                    ? addCommaToNumber(
+                        (
+                          (stakingData.rewards / stakingData.staked) *
+                          100
+                        ).toFixed(2)
+                      )
+                    : "---"}
+                  %
+                </span>
               </div>
             </div>
             <div className="stats__data__box">
-              <div className="stats__data__box__title small-title">
-                Available in wallet
-              </div>
+              <div className="stats__data__box__title small-title">Balance</div>
               <div className="stats__data__box__val big-value">
                 {totalTokens?.CHMB > -1 ? totalTokens.CHMB : "---"}
               </div>
@@ -244,9 +255,18 @@ const Container = styled.div<{ colors: IColors }>`
       }
 
       &__data {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        display: flex;
+        justify-content: space-between;
         margin-top: 20px;
+
+        &__box__val__returns {
+          font-size: 12px;
+          color: ${colors.success};
+
+          @media (max-width: 411px) {
+            font-size: 9px;
+          }
+        }
       }
     }
   `}
