@@ -52,11 +52,7 @@ const ChumbatarGeneratorLanding: React.FC = () => {
               const uri = await tokenURI(chumbiID);
               setIsLoading(false);
               if (uri) {
-                const ipfs = uri.split("/").reverse()[0];
-
-                router.push(
-                  `/chumbi-avatar-generator/${chumbiID}/?ipfs=${ipfs}`
-                );
+                router.push(`/chumbi-avatar-generator/${chumbiID}`);
               }
             }}
           />
