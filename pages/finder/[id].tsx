@@ -46,8 +46,7 @@ const ID: NextPage = () => {
         <ChumbiImg
           img={
             data
-              ? "https://cloudflare-ipfs.com/ipfs/" +
-                data?.image.replace("ipfs://", "")
+              ? "https://ipfs.io/ipfs/" + data?.image.replace("ipfs://", "")
               : ""
           }
         />

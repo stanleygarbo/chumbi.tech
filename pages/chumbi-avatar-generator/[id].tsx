@@ -44,10 +44,7 @@ const ChumbatarGeneratorPage: NextPage = () => {
       {data?.image && (
         <ChumbatarGenerator
           id={Number(router.query.id)}
-          image={
-            "https://cloudflare-ipfs.com/ipfs/" +
-            data?.image.replace("ipfs://", "")
-          }
+          image={"https://ipfs.io/ipfs/" + data?.image.replace("ipfs://", "")}
         />
       )}
     </div>
