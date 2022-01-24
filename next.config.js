@@ -3,6 +3,6 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: ["ipfs.io"],
+    domains: ["cloudflare-ipfs.com", "ipfs.io"],
   },
 };
