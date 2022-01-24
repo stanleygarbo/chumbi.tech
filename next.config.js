@@ -3,6 +3,6 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: ["gateway.pinata.cloud", "cloudflare-ipfs.com"],
+    domains: ["ipfs.io"],
   },
 };
