@@ -8,31 +8,31 @@ const inCommon = {
 };
 
 // lightened a bit
+export const darkThemeColors = {
+  bg1: "#212436",
+  bg2: "#0d0f16",
+  bg3: "#1f2132",
+  bg4: "#272b41",
+  text1: "#eeeff1",
+  text2: "#bab4cb",
+  text3: "#2e2e3a",
+  text4: "#2a2f43",
+  border1: "#30354f",
+  ...inCommon,
+};
+
 // export const darkThemeColors = {
-//   bg1: "#212436",
+//   bg1: "#161824",
 //   bg2: "#0d0f16",
-//   bg3: "#1f2132",
+//   bg3: "#141520",
 //   bg4: "#1c1f2f",
 //   text1: "#eeeff1",
 //   text2: "#bab4cb",
 //   text3: "#2e2e3a",
-//   text4: "#2a2f43",
-//   border1: "#30354f",
+//   text4: "#1f2231",
+//   border1: "#25293d",
 //   ...inCommon,
 // };
-
-export const darkThemeColors = {
-  bg1: "#161824",
-  bg2: "#0d0f16",
-  bg3: "#141520",
-  bg4: "#1c1f2f",
-  text1: "#eeeff1",
-  text2: "#bab4cb",
-  text3: "#2e2e3a",
-  text4: "#1f2231",
-  border1: "#25293d",
-  ...inCommon,
-};
 
 export const lightThemeColors = {
   bg1: "#ffffff",
