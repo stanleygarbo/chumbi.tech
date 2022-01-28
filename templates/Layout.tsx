@@ -60,7 +60,7 @@ ${({ colors, isHomePage }) => css`
     --color-flower: #d17aa2;
 
     /* tier 3 colors */
-    --color-creature: #080808;
+    --color-creature: #0b7166;
     --color-spirit: #1e3b67;
 
     /* tier 4 colors */

@@ -71,12 +71,10 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
         </div>
         <div className="footer__ranking">
           <span>Rarity:&nbsp;</span>
-          {Math.round(100 - (rarityrank / 4096) * 100) < 50
-            ? "bottom "
-            : "top "}
+          {Math.ceil(100 - (rarityrank / 4096) * 100) < 50 ? "bottom " : "top "}
           {Math.abs(
-            Math.round(percentageDeduction - (rarityrank / 4096) * 100)
-          )}
+            Math.ceil(percentageDeduction - (rarityrank / 4096) * 100)
+          ) + 1}
           %
         </div>
       </div>
