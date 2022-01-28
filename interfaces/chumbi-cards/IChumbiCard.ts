@@ -1,7 +1,9 @@
 export interface IChumbiCard {
-  id: number;
+  edition: number;
   name?: string;
-  rarity?: string;
+  seed?: string;
   image: string;
-  type?: string;
+  maintype?: string;
+  rarityrank?: number;
+  coattype?: string;
 }

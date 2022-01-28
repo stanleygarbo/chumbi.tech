@@ -1,10 +1,16 @@
 export interface IChumbiCards {
   data: {
-    id: number;
+    edition: number;
     name?: string;
-    rarity?: string;
     image: string;
+    imagehash: string;
     type?: string;
+    rarityrank?: number;
+    ranking?: number;
+    attributes: {
+      traittype: string;
+      value: string | number;
+    }[];
   }[];
   linkTo?: string;
 }

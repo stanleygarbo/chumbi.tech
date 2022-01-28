@@ -37,6 +37,8 @@ const Chumbi: NextPage = () => {
     };
   }, [current, totalChumbi]);
 
+  console.log(data);
+
   return (
     <Container colors={colors} className="tracker">
       <div className="content">
