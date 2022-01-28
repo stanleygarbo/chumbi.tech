@@ -36,6 +36,8 @@ const ConnectWallet: React.FC = () => {
 
   const [isRememberChecked, setIsRememberChecked] = useState<boolean>(true);
 
+  console.log(isRememberChecked);
+
   return (
     <Container colors={colors}>
       <div className="top">
@@ -81,7 +83,7 @@ const ConnectWallet: React.FC = () => {
           withLabel
           checked={isRememberChecked}
           checkHandler={() => {
-            setIsRememberChecked(false);
+            setIsRememberChecked(!isRememberChecked);
           }}
         />
         <div className="divider">or</div>

@@ -65,7 +65,7 @@ export interface CheckBoxInterface {
   label?: string;
   bg?: string;
   style?: React.CSSProperties;
-  checkHandler?: () => void;
+  checkHandler?: React.ChangeEventHandler<HTMLInputElement>;
   checked?: boolean;
 }
 
@@ -74,14 +74,13 @@ export const CheckBox: React.FC<CheckBoxInterface> = ({
   label,
   checkHandler,
   style,
-  checked,
   bg,
 }) => {
   const { colors } = useTheme();
 
   return (
     <StyledLabel colors={colors} style={style} bg={bg}>
-      <input checked={checked} type="checkbox" onClick={checkHandler} />
+      <input type="checkbox" onChange={checkHandler} />
       {withLabel && <span className="label">{label}</span>}
     </StyledLabel>
   );
