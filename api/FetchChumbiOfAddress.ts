@@ -4,7 +4,7 @@ const FetchChumbiOfAddress = (address: string) => {
   return (
     axios
       // .get(`https://api-gateway.chumbi.tech/${address}/chumbi`)
-      .get(`http://192.168.3.183:5000/${address}/chumbi`)
+      .get(`https://api-gateway.chumbi.tech/${address}/chumbi`)
       .then((res) => res.data)
   );
 };
