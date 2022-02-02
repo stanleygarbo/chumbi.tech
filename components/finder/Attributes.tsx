@@ -88,7 +88,12 @@ const Attributes: React.FC<IAttributes> = ({ attributes }) => {
           <div className="attributes__about__info">
             <div className="small-title">Main Type</div>
             <div className="attributes__about__info__val big-value">
-              <Image src={`/types/${mainType}.png`} width={40} height={40} />
+              <Image
+                alt=""
+                src={`/types/${mainType}.png`}
+                width={40}
+                height={40}
+              />
               &nbsp;
               {mainType}
             </div>
@@ -96,7 +101,12 @@ const Attributes: React.FC<IAttributes> = ({ attributes }) => {
           <div className="attributes__about__info">
             <div className="small-title">Coat Type</div>
             <div className="attributes__about__info__val big-value">
-              <Image src={`/types/${coatType}.png`} width={40} height={40} />
+              <Image
+                alt=""
+                src={`/types/${coatType}.png`}
+                width={40}
+                height={40}
+              />
               &nbsp;
               {coatType}
             </div>
@@ -104,7 +114,7 @@ const Attributes: React.FC<IAttributes> = ({ attributes }) => {
           <div className="attributes__about__info">
             <div className="small-title">Seed</div>
             <div className="attributes__about__info__val big-value">
-              <Image src={`/seed/${seed}.webp`} width={40} height={40} />
+              <Image alt="" src={`/seed/${seed}.webp`} width={40} height={40} />
               &nbsp;
               {seed}
             </div>
@@ -118,7 +128,7 @@ const Attributes: React.FC<IAttributes> = ({ attributes }) => {
               <div className="attributes__battle__info__part">{i.part}</div>
               <div className="attributes__battle__info__type">{i.type}:</div>
               <div className="attributes__battle__info__icon">
-                <Image src={i.icon} width={40} height={40} />
+                <Image alt="" src={i.icon} width={40} height={40} />
               </div>
               <div className="attributes__battle__info__name">{i.name}</div>
             </div>

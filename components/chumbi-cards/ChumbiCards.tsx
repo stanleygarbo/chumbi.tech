@@ -4,12 +4,16 @@ import { IChumbiCards } from "../../interfaces/chumbi-cards/IChumbiCards";
 import ChumbiCard from "./ChumbiCard";
 import Link from "next/link";
 
-const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo }) => {
+const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
   return (
     <Container cardsLength={data.length}>
       {linkTo
         ? data.map((i) => (
-            <Link key={i.edition} href={`${linkTo}${i.edition}`}>
+            <Link
+              key={i.edition}
+              href={`${linkTo}${i.edition}`}
+              as={linkAs ? `${linkAs}${i.edition}` : undefined}
+            >
               <a>
                 <ChumbiCard
                   edition={i.edition}
@@ -31,6 +35,8 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo }) => {
               name={i.name}
               seed={i.attributes[8].value.toString()}
               maintype={i.attributes[6].value.toString()}
+              rarityrank={i.rarityrank}
+              coattype={i.attributes[11].value.toString()}
             />
           ))}
     </Container>

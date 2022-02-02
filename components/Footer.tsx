@@ -15,7 +15,8 @@ const Footer = () => {
   if (
     pathname.includes("/tracker") ||
     pathname.includes("/finder") ||
-    pathname.includes("/chumbi-avatar-generator")
+    pathname.includes("/chumbi-avatar-generator") ||
+    pathname.includes("/seed-ranking")
   )
     return null;
 

@@ -24,7 +24,12 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
       <div className="header">
         <div className="header__id">Ranked #{rarityrank}</div>
         <section>
-          <Image src={`/seed/${seed}.webp`} width={20} height={20}></Image>
+          <Image
+            src={`/seed/${seed}.webp`}
+            width={20}
+            height={20}
+            alt=""
+          ></Image>
           &nbsp;
           <div
             className={`header__rarity header__rarity--${seed?.toLowerCase()}`}
@@ -37,7 +42,12 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
         <div className="types__item">
           Type:&nbsp;
           <div className={`types__item__main ${maintype} type-and-coat`}>
-            <Image src={`/types/${maintype}.png`} width={15} height={15} />
+            <Image
+              src={`/types/${maintype}.png`}
+              width={15}
+              height={15}
+              alt=""
+            />
             &nbsp;
             {maintype}
           </div>
@@ -45,7 +55,12 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
         <div className="types__item">
           Coat:&nbsp;
           <div className={`types__item__main ${coattype} type-and-coat`}>
-            <Image src={`/types/${coattype}.png`} width={15} height={15} />
+            <Image
+              src={`/types/${coattype}.png`}
+              width={15}
+              height={15}
+              alt=""
+            />
             &nbsp;
             {coattype}
           </div>

@@ -13,4 +13,5 @@ export interface IChumbiCards {
     }[];
   }[];
   linkTo?: string;
+  linkAs?: string;
 }

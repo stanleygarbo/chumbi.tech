@@ -10,9 +10,11 @@ const StyledLabel = styled.label<{ bg?: string; colors: IColors }>`
     align-items: center;
     height: 15px;
     padding-left: 5px;
+    cursor: pointer;
+
     input {
-      position: relative;
       cursor: pointer;
+      position: relative;
       border: 1px solid transparent;
 
       &[type="checkbox"]::before {
@@ -56,6 +58,7 @@ const StyledLabel = styled.label<{ bg?: string; colors: IColors }>`
       user-select: none;
       color: ${colors.text2};
       font-size: 12px;
+      width: 100%;
     }
   `}
 `;
@@ -67,6 +70,7 @@ export interface CheckBoxInterface {
   style?: React.CSSProperties;
   checkHandler?: React.ChangeEventHandler<HTMLInputElement>;
   checked?: boolean;
+  children?: React.ReactChild;
 }
 
 export const CheckBox: React.FC<CheckBoxInterface> = ({
@@ -76,13 +80,19 @@ export const CheckBox: React.FC<CheckBoxInterface> = ({
   style,
   checked,
   bg,
+  children,
 }) => {
   const { colors } = useTheme();
 
   return (
     <StyledLabel colors={colors} style={style} bg={bg}>
       <input checked={checked} type="checkbox" onChange={checkHandler} />
-      {withLabel && <span className="label">{label}</span>}
+      {withLabel && (
+        <span className="label">
+          {label}
+          {children}
+        </span>
+      )}
     </StyledLabel>
   );
 };

@@ -102,6 +102,7 @@ ${({ colors, isHomePage }) => css`
 
   .neutral {
     background: var(--color-neutral);
+    color: #000;
   }
   .forest {
     background: var(--color-forest);

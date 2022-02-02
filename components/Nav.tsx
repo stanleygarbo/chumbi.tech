@@ -24,6 +24,7 @@ const Nav = () => {
       isHomePage={router.pathname === "/"}
       isTrackerMainPage={router.pathname === "/tracker"}
       isTrackerPage={router.pathname.includes("/tracker/")}
+      fullWidth={router.pathname === "/seed-ranking"}
     >
       <div className="nav-wrapper">
         <Link href="/" passHref>
@@ -38,7 +39,7 @@ const Nav = () => {
                 Tracker
               </Link>
             </li>
-            <li
+            {/* <li
               className={
                 router.pathname.includes("/chumbi-avatar-generator")
                   ? "active"
@@ -47,6 +48,16 @@ const Nav = () => {
             >
               <Link href="/chumbi-avatar-generator" passHref>
                 Avatar Generator
+              </Link>
+            </li> */}
+
+            <li
+              className={
+                router.pathname.includes("/seed-ranking") ? "active" : ""
+              }
+            >
+              <Link href="/seed-ranking" passHref>
+                Seed Ranking
               </Link>
             </li>
             <li className={router.pathname === "/guides" ? "active" : ""}>
@@ -118,7 +129,7 @@ const Nav = () => {
                 <a onClick={() => setIsMenuOpen(false)}>Tracker</a>
               </Link>
             </li>
-            <li
+            {/* <li
               className={
                 router.pathname.includes("/chumbi-avatar-generator")
                   ? "active"
@@ -127,6 +138,16 @@ const Nav = () => {
             >
               <Link href="/chumbi-avatar-generator" passHref>
                 <a onClick={() => setIsMenuOpen(false)}>Avatar Generator</a>
+              </Link>
+            </li> */}
+
+            <li
+              className={
+                router.pathname.includes("/seed-ranking") ? "active" : ""
+              }
+            >
+              <Link href="/seed-ranking" passHref>
+                <a onClick={() => setIsMenuOpen(false)}>Seed Ranking</a>
               </Link>
             </li>
             <li className={router.pathname.includes("/guides") ? "active" : ""}>
@@ -167,8 +188,15 @@ const StyledNav = styled.nav<{
   isHomePage: boolean;
   isTrackerMainPage: boolean;
   isTrackerPage: boolean;
+  fullWidth: boolean;
 }>`
-  ${({ colors, isHomePage, isTrackerMainPage, isTrackerPage }) => css`
+  ${({
+    colors,
+    isHomePage,
+    isTrackerMainPage,
+    isTrackerPage,
+    fullWidth,
+  }) => css`
     height: ${isHomePage || isTrackerMainPage ? "140px" : "70px"};
 
     width: 100%;
@@ -189,22 +217,27 @@ const StyledNav = styled.nav<{
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      ${isTrackerMainPage
+      ${fullWidth
         ? css`
             width: 100%;
-            padding: 0 40px;
-            border: none;
-            @media (max-width: 400px) {
-              padding: 0 20px;
-              height: 75px;
-              border-bottom: 1px solid ${colors.border1};
-            }
+            padding: 0 20px;
           `
         : css`
             max-width: 1140px;
             padding: 0 20px;
-          `};
+          `}
+
+      ${isTrackerMainPage &&
+      css`
+        width: 100%;
+        padding: 0 40px;
+        border: none;
+        @media (max-width: 400px) {
+          padding: 0 20px;
+          height: 75px;
+          border-bottom: 1px solid ${colors.border1};
+        }
+      `};
 
       &__logo {
         color: #000;
