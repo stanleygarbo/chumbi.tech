@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
+import { useQuery } from "react-query";
 import FetchTokenURI from "../../api/FetchTokenURI";
 import ChumbatarGenerator from "../../components/chumbatar-generator/ChumbatarGenerator";
 import { useWallet } from "../../contexts/walletContext";
@@ -25,13 +25,10 @@ const ChumbatarGeneratorPage: NextPage = () => {
     }
   }, [router.query, tokenURI]);
 
-  const { data } = useSWR(
+  const { data } = useQuery(
     ["TokenURI", ipfsID],
     () => (ipfsID ? FetchTokenURI(ipfsID) : null),
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-    }
+    { staleTime: Infinity }
   );
 
   return (
