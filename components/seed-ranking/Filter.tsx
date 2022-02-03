@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import useSWR from "swr";
 import FetchChumbiFilter from "../../api/FetchChumbiFilters";
 import { useTheme } from "../../contexts/themeContext";
 import { IColors } from "../../interfaces/IColors";
@@ -12,6 +11,7 @@ import { useRouter } from "next/router";
 import qs from "qs";
 import { IFetchChumbiQuery } from "../../interfaces/api/IFetchChumbi";
 import { CgClose } from "react-icons/cg";
+import { useQuery } from "react-query";
 
 type filterObj = {
   name: string;
@@ -24,12 +24,11 @@ type filterObj = {
 
 const Filter: React.FC<IFilter> = ({ setQuery, query }) => {
   const { colors } = useTheme();
-  const { data } = useSWR<{ [key: string]: number }[]>(
+  const { data } = useQuery<{ [key: string]: number }[]>(
     "ChumbiRankingFilter",
     FetchChumbiFilter,
     {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
+      staleTime: Infinity,
     }
   );
   const [filters, setFilters] = useState<filterObj[]>();
