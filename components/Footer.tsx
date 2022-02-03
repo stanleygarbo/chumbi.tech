@@ -33,6 +33,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/seed-ranking">Seed Ranking</Link>
+              </li>
+              <li>
                 <Link href="/chumbi-avatar-generator">Avatar Generator</Link>
               </li>
               <li>

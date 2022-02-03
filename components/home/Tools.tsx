@@ -57,13 +57,11 @@ const Tools = () => {
                 alt=""
               />
             </div>
-            <h2>Avatar Generator</h2>
+            <h2>Seed Ranking</h2>
             <p>
-              Get a chumbatar just by pasting a particular chumbi&apos;s ID.
+              Look for the rarest chumbi you want! or know how rare yours is!
             </p>
-            <Button onClick={() => push("/chumbi-avatar-generator")}>
-              Open
-            </Button>
+            <Button onClick={() => push("/seed-ranking")}>Open</Button>
           </div>
 
           <div className="tools__cards__card">
