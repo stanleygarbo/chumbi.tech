@@ -6,32 +6,21 @@ import { IColors } from "../../interfaces/IColors";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 import { CheckBox } from "../Checkbox";
 import Image from "next/image";
-import { IFilter } from "../../interfaces/tracker/seed-ranking/IFilter";
+import {
+  filterObj,
+  IFilter,
+} from "../../interfaces/tracker/seed-ranking/IFilter";
 import { useRouter } from "next/router";
 import qs from "qs";
-import { IFetchChumbiQuery } from "../../interfaces/api/IFetchChumbi";
 import { CgClose } from "react-icons/cg";
-import { useQuery } from "react-query";
 
-type filterObj = {
-  name: string;
-  isOpened: boolean;
-  properties: { [key: string]: number };
-  checkedProperties: string[];
-  checked: number;
-  txtFilter: string;
-};
-
-const Filter: React.FC<IFilter> = ({ setQuery, query }) => {
+const Filter: React.FC<IFilter> = ({
+  setQuery,
+  query,
+  setFilters,
+  filters,
+}) => {
   const { colors } = useTheme();
-  const { data } = useQuery<{ [key: string]: number }[]>(
-    "ChumbiRankingFilter",
-    FetchChumbiFilter,
-    {
-      staleTime: Infinity,
-    }
-  );
-  const [filters, setFilters] = useState<filterObj[]>();
 
   const router = useRouter();
   const [queryString, setQueryString] = useState("");
@@ -39,71 +28,6 @@ const Filter: React.FC<IFilter> = ({ setQuery, query }) => {
   useEffect(() => {
     if (queryString) router.push(`/seed-ranking?${queryString}`);
   }, [queryString]);
-
-  useEffect(() => {
-    let _isMounted = true;
-    const arr: filterObj[] = [];
-
-    const query = qs.parse(router.asPath.replace("/seed-ranking?", ""));
-
-    function isInstanceOfQ(obj: any): obj is IFetchChumbiQuery {
-      return "filter" in obj;
-    }
-    if (isInstanceOfQ(query)) {
-      setQuery(query);
-    }
-    if (data) {
-      Object.entries(data).map((i) => {
-        if (isInstanceOfQ(query)) {
-          query.filter?.map((j) => {
-            if (j.name === i[0]) {
-              const obj: filterObj = {
-                name: i[0],
-                isOpened: i[0] === "Main Type",
-                properties: i[1],
-                checkedProperties: j.value,
-                checked: j.value.length,
-                txtFilter: "",
-              };
-              arr.push(obj);
-            } else {
-              const obj: filterObj = {
-                name: i[0],
-                isOpened: i[0] === "Main Type",
-                properties: i[1],
-                checkedProperties: [],
-                checked: 0,
-                txtFilter: "",
-              };
-              arr.push(obj);
-            }
-          });
-        } else {
-          const obj: filterObj = {
-            name: i[0],
-            isOpened: i[0] === "Main Type",
-            properties: i[1],
-            checkedProperties: [],
-            checked: 0,
-            txtFilter: "",
-          };
-          arr.push(obj);
-        }
-      });
-    }
-
-    const filtered = arr.filter((i) => i.name !== "Main Type");
-    const mainType = arr.filter((i) => i.name === "Main Type");
-
-    const newArr = [...filtered];
-    newArr.unshift(...mainType);
-
-    if (_isMounted) setFilters(newArr);
-
-    return () => {
-      _isMounted = false;
-    };
-  }, [data]);
 
   return (
     <Container colors={colors}>

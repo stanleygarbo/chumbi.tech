@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import styled, { css } from "styled-components";
 import FetchChumbi from "../api/FetchChumbi";
@@ -12,6 +12,10 @@ import { IFetchChumbiQuery } from "../interfaces/api/IFetchChumbi";
 import { IColors } from "../interfaces/IColors";
 import Modal from "react-modal";
 import { CgClose } from "react-icons/cg";
+import { filterObj } from "../interfaces/tracker/seed-ranking/IFilter";
+import FetchChumbiFilter from "../api/FetchChumbiFilters";
+import { useRouter } from "next/router";
+import QueryString from "qs";
 
 const SeedRankingPage: NextPage = () => {
   const [query, setQuery] = useState<IFetchChumbiQuery>({
@@ -20,6 +24,7 @@ const SeedRankingPage: NextPage = () => {
   });
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const { colors } = useTheme();
+  const router = useRouter();
 
   const ChumbiQuery = useQuery(["Chumbi", query], () => FetchChumbi(query), {
     staleTime: Infinity,
@@ -27,10 +32,92 @@ const SeedRankingPage: NextPage = () => {
 
   const { screenWidth } = useScreenSize();
 
+  const { data } = useQuery<{ [key: string]: number }[]>(
+    "ChumbiRankingFilter",
+    FetchChumbiFilter,
+    {
+      staleTime: Infinity,
+    }
+  );
+  const [filters, setFilters] = useState<filterObj[]>();
+
+  useEffect(() => {
+    let _isMounted = true;
+    const arr: filterObj[] = [];
+
+    const query = QueryString.parse(
+      router.asPath.replace("/seed-ranking?", "")
+    );
+
+    function isInstanceOfQ(obj: any): obj is IFetchChumbiQuery {
+      return "filter" in obj;
+    }
+    if (isInstanceOfQ(query)) {
+      setQuery(query);
+    }
+    if (data) {
+      Object.entries(data).map((i) => {
+        if (isInstanceOfQ(query)) {
+          query.filter?.map((j) => {
+            if (j.name === i[0]) {
+              const obj: filterObj = {
+                name: i[0],
+                isOpened: i[0] === "Main Type",
+                properties: i[1],
+                checkedProperties: j.value,
+                checked: j.value.length,
+                txtFilter: "",
+              };
+              arr.push(obj);
+            } else {
+              const obj: filterObj = {
+                name: i[0],
+                isOpened: i[0] === "Main Type",
+                properties: i[1],
+                checkedProperties: [],
+                checked: 0,
+                txtFilter: "",
+              };
+              arr.push(obj);
+            }
+          });
+        } else {
+          const obj: filterObj = {
+            name: i[0],
+            isOpened: i[0] === "Main Type",
+            properties: i[1],
+            checkedProperties: [],
+            checked: 0,
+            txtFilter: "",
+          };
+          arr.push(obj);
+        }
+      });
+    }
+
+    const filtered = arr.filter((i) => i.name !== "Main Type");
+    const mainType = arr.filter((i) => i.name === "Main Type");
+
+    const newArr = [...filtered];
+    newArr.unshift(...mainType);
+
+    if (_isMounted) setFilters(newArr);
+
+    return () => {
+      _isMounted = false;
+    };
+  }, [data]);
+
   return (
     <Container className="hero" colors={colors}>
       {screenWidth > 867 ? (
-        <Filter query={query} setQuery={setQuery} />
+        <Filter
+          filters={filters}
+          setFilters={setFilters}
+          data={data}
+          query={query}
+          setQuery={setQuery}
+        />
       ) : (
         <>
           <button
@@ -45,7 +132,13 @@ const SeedRankingPage: NextPage = () => {
             onRequestClose={() => setIsFilterOpen(false)}
             ariaHideApp={false}
           >
-            <Filter query={query} setQuery={setQuery} />
+            <Filter
+              filters={filters}
+              setFilters={setFilters}
+              data={data}
+              query={query}
+              setQuery={setQuery}
+            />
           </Modal>
         </>
       )}
