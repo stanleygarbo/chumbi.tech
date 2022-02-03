@@ -45,7 +45,7 @@ const ViewYourChumbi = () => {
             </div>
             <div className="content__chumbi__chumbi__id">
               <div className="content__chumbi__chumbi__id__icon">
-                <Image src="/tier-1/forest.png" width={30} height={30} alt="" />
+                <Image src="/types/forest.png" width={30} height={30} alt="" />
               </div>
               #40291
             </div>
@@ -69,7 +69,7 @@ const ViewYourChumbi = () => {
             </div>
             <div className="content__chumbi__chumbi__id">
               <div className="content__chumbi__chumbi__id__icon">
-                <Image src="/tier-1/insect.png" width={30} height={30} alt="" />
+                <Image src="/types/insect.png" width={30} height={30} alt="" />
               </div>
               #60021
             </div>
@@ -94,7 +94,7 @@ const ViewYourChumbi = () => {
             </div>
             <div className="content__chumbi__chumbi__id">
               <div className="content__chumbi__chumbi__id__icon">
-                <Image src="/tier-4/void.png" width={30} height={30} alt="" />
+                <Image src="/types/void.png" width={30} height={30} alt="" />
               </div>
               #32051
             </div>
@@ -118,12 +118,7 @@ const ViewYourChumbi = () => {
             </div>
             <div className="content__chumbi__chumbi__id">
               <div className="content__chumbi__chumbi__id__icon">
-                <Image
-                  src="/tier-2/crystal.png"
-                  width={30}
-                  height={30}
-                  alt=""
-                />
+                <Image src="/types/crystal.png" width={30} height={30} alt="" />
               </div>{" "}
               #22051
             </div>

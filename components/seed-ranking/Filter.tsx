@@ -370,6 +370,12 @@ const Container = styled.div<{ colors: IColors }>`
     border-right: 1px solid ${colors.border1};
     overflow-y: auto;
 
+    @media (max-width: 867px) {
+      width: 100vw;
+      height: 100vh;
+      padding-bottom: 100px;
+    }
+
     &::-webkit-scrollbar {
       width: 5px;
     }
