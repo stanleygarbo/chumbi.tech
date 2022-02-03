@@ -191,7 +191,7 @@ const Container = styled.div<{ colors: IColors }>`
       border-radius: 100px;
       border: none;
 
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
 
       z-index: 210;
@@ -206,7 +206,8 @@ const Container = styled.div<{ colors: IColors }>`
 
       &--close {
         background: ${colors.danger};
-        width: 45px;
+        height: 55px;
+        width: 55px;
         font-size: 25px;
       }
     }
