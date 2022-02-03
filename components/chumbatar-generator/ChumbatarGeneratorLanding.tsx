@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled, { css } from "styled-components";
-import useSWR from "swr";
 import FetchChumbiOfAddress from "../../api/FetchChumbiOfAddress";
 import { useTheme } from "../../contexts/themeContext";
 import { useWallet } from "../../contexts/walletContext";
@@ -17,12 +17,11 @@ const ChumbatarGeneratorLanding: React.FC = () => {
   const { tokenURI, totalChumbi, current } = useWallet();
   const [chumbiAmount, setChumbiAmount] = useState<number>(-1);
 
-  const { data, isValidating } = useSWR(
+  const ChumbiOfAddressQuery = useQuery(
     ["ChumbiOfAddress", current],
     () => (current ? FetchChumbiOfAddress(current) : null),
     {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
+      staleTime: Infinity,
     }
   );
 
@@ -91,12 +90,17 @@ const ChumbatarGeneratorLanding: React.FC = () => {
         </div>
       )}
 
-      {isValidating ? (
+      {ChumbiOfAddressQuery.isLoading ? (
         <div className="indicator">
           <img src="/dots-loader.svg" width={25} alt="" />
         </div>
       ) : (
-        data && <ChumbiCards linkTo="/chumbi-avatar-generator/" data={data} />
+        ChumbiOfAddressQuery.data && (
+          <ChumbiCards
+            linkTo="/chumbi-avatar-generator/"
+            data={ChumbiOfAddressQuery.data}
+          />
+        )
       )}
     </Container>
   );
