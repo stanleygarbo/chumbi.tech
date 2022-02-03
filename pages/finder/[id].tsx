@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled from "styled-components";
-import useSWR from "swr";
 import FetchTokenURI from "../../api/FetchTokenURI";
 import Attributes from "../../components/finder/Attributes";
 import ChumbiImg from "../../components/finder/ChumbiImg";
@@ -30,12 +30,11 @@ const ID: NextPage = () => {
     };
   }, [router.query, tokenURI]);
 
-  const { data } = useSWR(
+  const { data } = useQuery(
     ["TokenURI", ipfsID],
     () => (ipfsID ? FetchTokenURI(ipfsID) : null),
     {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
+      staleTime: Infinity,
     }
   );
 

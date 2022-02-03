@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled, { css } from "styled-components";
-import useSWR from "swr";
 import FetchChumbiOfAddress from "../../api/FetchChumbiOfAddress";
 import ChumbiCards from "../../components/chumbi-cards/ChumbiCards";
 import { useTheme } from "../../contexts/themeContext";
@@ -13,12 +13,11 @@ const Chumbi: NextPage = () => {
   const [chumbiAmount, setChumbiAmount] = useState<number>(-1);
   const { colors } = useTheme();
 
-  const { data, isValidating } = useSWR(
+  const { data } = useQuery(
     ["ChumbiOfAddress", current],
     () => (current ? FetchChumbiOfAddress(current) : null),
     {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
+      staleTime: Infinity,
     }
   );
 

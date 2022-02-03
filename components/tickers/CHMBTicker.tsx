@@ -1,12 +1,14 @@
+import { useQuery } from "react-query";
 import styled, { css } from "styled-components";
-import useSWR from "swr";
 import FetchCHMBPrice from "../../api/FetchCHMBPrice";
 import { useTheme } from "../../contexts/themeContext";
 import { IColors } from "../../interfaces/IColors";
 import { ICHMBTicker } from "../../interfaces/tickers/ICHMBTicker";
 
 const CHMBTicker: React.FC<ICHMBTicker> = ({ style }) => {
-  const { data } = useSWR("CHMBPrice", FetchCHMBPrice);
+  const { data } = useQuery("CHMBPrice", FetchCHMBPrice, {
+    staleTime: Infinity,
+  });
   const { colors } = useTheme();
 
   return (
