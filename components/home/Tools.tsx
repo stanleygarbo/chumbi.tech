@@ -49,11 +49,11 @@ const Tools = () => {
             {/* <AiOutlinePicture /> */}
             <div className="tools__cards__card__icon">
               <Image
-                src="/tool-icons/avatar.png"
+                src="/tool-icons/seed.png"
                 placeholder="blur"
-                blurDataURL="/tool-icons/avatar.png"
-                width={100}
-                height={100}
+                blurDataURL="/tool-icons/seed.png"
+                width={150}
+                height={102}
                 alt=""
               />
             </div>
