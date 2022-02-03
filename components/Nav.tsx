@@ -24,7 +24,9 @@ const Nav = () => {
       isHomePage={router.pathname === "/"}
       isTrackerMainPage={router.pathname === "/tracker"}
       isTrackerPage={router.pathname.includes("/tracker/")}
-      fullWidth={router.pathname === "/seed-ranking"}
+      fullWidth={
+        router.pathname === "/seed-ranking" || router.pathname === "/tracker"
+      }
     >
       <div className="nav-wrapper">
         <Link href="/" passHref>
