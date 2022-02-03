@@ -12,10 +12,11 @@ import { IFetchChumbiQuery } from "../interfaces/api/IFetchChumbi";
 import { IColors } from "../interfaces/IColors";
 import Modal from "react-modal";
 import { CgClose } from "react-icons/cg";
-import { filterObj } from "../interfaces/tracker/seed-ranking/IFilter";
+import { filterObj } from "../interfaces/seed-ranking/IFilter";
 import FetchChumbiFilter from "../api/FetchChumbiFilters";
 import { useRouter } from "next/router";
 import QueryString from "qs";
+import PagePicker from "../components/seed-ranking/PagePicker";
 
 const SeedRankingPage: NextPage = () => {
   const [query, setQuery] = useState<IFetchChumbiQuery>({
@@ -153,6 +154,16 @@ const SeedRankingPage: NextPage = () => {
             data={ChumbiQuery.data.chumbi}
           />
         )}
+
+        {ChumbiQuery.data && query.page && (
+          <PagePicker
+            maxPage={ChumbiQuery.data.maxPages}
+            currentPage={query.page}
+            onPagePick={(selectedPage) => {
+              setQuery({ page: selectedPage, filter: query.filter });
+            }}
+          />
+        )}
       </div>
     </Container>
   );
@@ -169,6 +180,13 @@ const Container = styled.div<{ colors: IColors }>`
       padding: 20px;
       height: calc(100vh - 70px);
       overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 30px;
+      @media (max-width: 867px) {
+        padding-bottom: 100px;
+      }
 
       &::-webkit-scrollbar {
         width: 5px;

@@ -6,10 +6,7 @@ import { IColors } from "../../interfaces/IColors";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 import { CheckBox } from "../Checkbox";
 import Image from "next/image";
-import {
-  filterObj,
-  IFilter,
-} from "../../interfaces/tracker/seed-ranking/IFilter";
+import { filterObj, IFilter } from "../../interfaces/seed-ranking/IFilter";
 import { useRouter } from "next/router";
 import qs from "qs";
 import { CgClose } from "react-icons/cg";
