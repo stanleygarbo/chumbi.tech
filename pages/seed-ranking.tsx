@@ -45,7 +45,6 @@ const SeedRankingPage: NextPage = () => {
   useEffect(() => {
     let _isMounted = true;
     const arr: filterObj[] = [];
-
     const query = QueryString.parse(
       router.asPath.replace("/seed-ranking?", "")
     );
@@ -56,9 +55,13 @@ const SeedRankingPage: NextPage = () => {
     if (isInstanceOfQ(query)) {
       setQuery(query);
     }
+
+    console.log(arr);
+
     if (data) {
       Object.entries(data).map((i) => {
         if (isInstanceOfQ(query)) {
+          const alreadyIn: string[] = [];
           query.filter?.map((j) => {
             if (j.name === i[0]) {
               const obj: filterObj = {
@@ -70,18 +73,21 @@ const SeedRankingPage: NextPage = () => {
                 txtFilter: "",
               };
               arr.push(obj);
-            } else {
-              const obj: filterObj = {
-                name: i[0],
-                isOpened: i[0] === "Main Type",
-                properties: i[1],
-                checkedProperties: [],
-                checked: 0,
-                txtFilter: "",
-              };
-              arr.push(obj);
+              alreadyIn.push(i[0]);
             }
           });
+
+          if (!alreadyIn.includes(i[0])) {
+            const obj: filterObj = {
+              name: i[0],
+              isOpened: i[0] === "Main Type",
+              properties: i[1],
+              checkedProperties: [],
+              checked: 0,
+              txtFilter: "",
+            };
+            arr.push(obj);
+          }
         } else {
           const obj: filterObj = {
             name: i[0],
@@ -95,6 +101,8 @@ const SeedRankingPage: NextPage = () => {
         }
       });
     }
+
+    console.log(arr);
 
     const filtered = arr.filter((i) => i.name !== "Main Type");
     const mainType = arr.filter((i) => i.name === "Main Type");
