@@ -156,11 +156,14 @@ const SeedRankingPage: NextPage = () => {
           <Image src="/dots-loader.svg" width={30} height={30} alt="" />
         )}
         {ChumbiQuery.data && (
-          <ChumbiCards
-            linkTo="/seed-ranking?id="
-            linkAs="/finder/"
-            data={ChumbiQuery.data.chumbi}
-          />
+          <>
+            <h2>{ChumbiQuery.data.count} Chumbi</h2>
+            <ChumbiCards
+              linkTo="/seed-ranking?id="
+              linkAs="/finder/"
+              data={ChumbiQuery.data.chumbi}
+            />
+          </>
         )}
 
         {ChumbiQuery.data && query.page && (
@@ -181,6 +184,10 @@ const Container = styled.div<{ colors: IColors }>`
   ${({ colors }) => css`
     display: flex;
     justify-content: center;
+
+    h2 {
+      width: 100%;
+    }
 
     .chumbi-cards {
       z-index: 1;
