@@ -71,7 +71,7 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
         {/* {isLoading ? (
           <Image src="/ripple-loader.svg" priority width={50} height={50} />
         ) : ( */}
-        <Image src={image} layout="fill" alt="" />
+        <img width={"100%"} src={image} alt="" />
         {/* )} */}
       </div>
       <div className="footer">
