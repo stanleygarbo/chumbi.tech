@@ -114,7 +114,7 @@ const StakingRewardsPage: NextPage = () => {
             },
             {
               name: `${
-                165 -
+                365 -
                 Number(
                   moment
                     .duration(
