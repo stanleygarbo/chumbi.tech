@@ -31,13 +31,14 @@ const PagePicker: React.FC<IPagePicker> = ({
       Page&nbsp;
       <input
         type="number"
-        maxLength={maxPage}
+        max={maxPage}
+        min={1}
         value={page}
         onChange={(e) => {
           setPage(Number(e.target.value));
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && page < maxPage) {
             onPagePick(page);
           }
         }}
@@ -48,6 +49,7 @@ const PagePicker: React.FC<IPagePicker> = ({
           onPagePick(Number(currentPage) + 1);
         }}
         className={`page-move next ${currentPage >= maxPage && "disabled"}`}
+        disabled={currentPage >= maxPage}
       >
         <HiArrowRight />
       </button>
