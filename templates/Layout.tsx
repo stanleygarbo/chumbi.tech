@@ -150,6 +150,19 @@ ${({ colors, isHomePage }) => css`
     background: var(--color-void);
   }
 
+  .rare {
+    background: var(--color-rare);
+  }
+  .epic {
+    background: var(--color-epic);
+  }
+  .legendary {
+    background: var(--color-legendary);
+  }
+  .mythic {
+    background: var(--color-mythic);
+  }
+
   h2 {
     font-size: 17px;
     color: ${colors.text1};
