@@ -227,8 +227,6 @@ const Container = styled.div<{ colors: IColors }>`
       font-size: 17px;
       font-weight: 600;
 
-      z-index: 210;
-
       background: ${colors.accent};
       color: #fff;
       transition: width 0.3s;
@@ -236,12 +234,14 @@ const Container = styled.div<{ colors: IColors }>`
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 20;
 
       &--close {
         background: ${colors.danger};
         height: 55px;
         width: 55px;
         font-size: 25px;
+        z-index: 210;
       }
     }
   `}
