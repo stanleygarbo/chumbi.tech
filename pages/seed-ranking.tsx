@@ -156,8 +156,8 @@ const SeedRankingPage: NextPage = () => {
           <>
             <h2>{ChumbiQuery.data.count} Chumbi</h2>
             <ChumbiCards
-              linkTo="/seed-ranking?id="
-              linkAs="/finder/"
+              linkTo={screenWidth > 1000 ? "/seed-ranking?id=" : "/finder/"}
+              linkAs={screenWidth > 1000 ? "/finder/" : undefined}
               data={ChumbiQuery.data.chumbi}
             />
           </>
