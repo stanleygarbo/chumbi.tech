@@ -85,6 +85,18 @@ ${({ colors, isHomePage }) => css`
     width: 100vw;
   }
 
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${colors.bg2};
+  }
+
   .hero {
     padding-top: ${isHomePage ? "0px" : "70px"};
   }
@@ -261,6 +273,9 @@ ${({ colors, isHomePage }) => css`
     inset: 0px !important;
     width: fit-content !important;
     height: fit-content !important;
+    padding: 0px !important;
+    border-radius: 0px !important;
+    margin: 0px 20px !important;
 
     .menu {
       width: 100vw;

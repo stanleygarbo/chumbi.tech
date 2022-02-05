@@ -13,7 +13,6 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
     ["chumbi_", id],
     () => FetchSingleChumbi(id)
   );
-  console.log(data);
 
   const { colors } = useTheme();
   const mainType = data?.attributes[6].value;
@@ -40,6 +39,8 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
         )}
       </div>
       <div className="side side--info">
+        <h1>{data?.name}</h1>
+
         {data && (
           <div className="side__header">
             <div className="side__header__att">
@@ -89,7 +90,6 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
             </div>
           </div>
         )}
-        <h1>{data?.name}</h1>
         <h2>
           Rarity Score:{" "}
           {data?.raritytraitscore && data.raritytraitscore.toFixed(2)}
@@ -144,7 +144,7 @@ const Container = styled.div<{ colors: IColors }>`
       width: 50%;
 
       &--info {
-        padding-left: 20px;
+        padding: 20px;
         overflow-y: auto;
       }
 
@@ -175,11 +175,11 @@ const Container = styled.div<{ colors: IColors }>`
       h1 {
         font-size: 20px;
         color: ${colors.text1};
-        margin: 20px 0px;
+        margin-bottom: 20px;
       }
 
       h2 {
-        margin-bottom: 20px;
+        margin: 20px 0;
         color: ${colors.text2};
       }
 

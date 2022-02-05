@@ -17,6 +17,7 @@ import FetchChumbiFilter from "../api/FetchChumbiFilters";
 import { useRouter } from "next/router";
 import QueryString from "qs";
 import PagePicker from "../components/seed-ranking/PagePicker";
+import ChumbiInfo from "../components/finder/ChumbiInfo";
 
 const SeedRankingPage: NextPage = () => {
   const [query, setQuery] = useState<IFetchChumbiQuery>({
@@ -55,8 +56,6 @@ const SeedRankingPage: NextPage = () => {
     if (isInstanceOfQ(query)) {
       setQuery(query);
     }
-
-    console.log(arr);
 
     if (data) {
       Object.entries(data).map((i) => {
@@ -101,8 +100,6 @@ const SeedRankingPage: NextPage = () => {
         }
       });
     }
-
-    console.log(arr);
 
     const filtered = arr.filter((i) => i.name !== "Main Type");
     const mainType = arr.filter((i) => i.name === "Main Type");
@@ -165,6 +162,15 @@ const SeedRankingPage: NextPage = () => {
             />
           </>
         )}
+        <Modal
+          isOpen={!!router.query.id}
+          onRequestClose={() => router.back()}
+          ariaHideApp={false}
+        >
+          <ModalViewContainer>
+            <ChumbiInfo id={Number(router.query.id)} />
+          </ModalViewContainer>
+        </Modal>
 
         {ChumbiQuery.data && query.page && (
           <PagePicker
@@ -179,6 +185,11 @@ const SeedRankingPage: NextPage = () => {
     </Container>
   );
 };
+
+const ModalViewContainer = styled.div`
+  max-width: 1000px;
+  height: 500px;
+`;
 
 const Container = styled.div<{ colors: IColors }>`
   ${({ colors }) => css`
@@ -201,18 +212,6 @@ const Container = styled.div<{ colors: IColors }>`
       padding-bottom: 30px;
       @media (max-width: 867px) {
         padding-bottom: 100px;
-      }
-
-      &::-webkit-scrollbar {
-        width: 5px;
-      }
-
-      &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: ${colors.bg2};
       }
     }
 
