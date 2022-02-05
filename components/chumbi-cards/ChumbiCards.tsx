@@ -19,10 +19,10 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
                   edition={i.edition}
                   image={`https://ipfs.io/ipfs/${i.imagehash}`}
                   name={i.name}
-                  seed={i.attributes[8].value.toString()}
-                  maintype={i.attributes[6].value.toString()}
+                  seed={i.attributes[8].value.toString().toLowerCase()}
+                  maintype={i.attributes[6].value.toString().toLowerCase()}
                   rarityrank={i.rarityrank}
-                  coattype={i.attributes[11].value.toString()}
+                  coattype={i.attributes[11].value.toString().toLowerCase()}
                 />
               </a>
             </Link>
@@ -33,10 +33,10 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
               edition={i.edition}
               image={`https://ipfs.io/ipfs/${i.imagehash}`}
               name={i.name}
-              seed={i.attributes[8].value.toString()}
-              maintype={i.attributes[6].value.toString()}
+              seed={i.attributes[8].value.toString().toLowerCase()}
+              maintype={i.attributes[6].value.toString().toLowerCase()}
               rarityrank={i.rarityrank}
-              coattype={i.attributes[11].value.toString()}
+              coattype={i.attributes[11].value.toString().toLowerCase()}
             />
           ))}
     </Container>

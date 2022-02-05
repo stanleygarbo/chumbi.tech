@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import FetchChumbiFilter from "../../api/FetchChumbiFilters";
 import { useTheme } from "../../contexts/themeContext";
 import { IColors } from "../../interfaces/IColors";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
@@ -158,6 +157,7 @@ const Filter: React.FC<IFilter> = ({
                                   setFilters(newFilters);
 
                                   const newQueryFilter = [...query.filter];
+                                  let page: number | undefined = 1;
 
                                   const newQueryFilter_idxToUpdate =
                                     newQueryFilter.findIndex(
@@ -176,14 +176,14 @@ const Filter: React.FC<IFilter> = ({
                                   }
 
                                   setQuery({
-                                    ...query,
+                                    page,
                                     filter: newQueryFilter,
                                   });
 
                                   setQueryString(
                                     qs.stringify(
                                       {
-                                        ...query,
+                                        page,
                                         filter: newQueryFilter,
                                       },
                                       {
@@ -250,7 +250,7 @@ const Filter: React.FC<IFilter> = ({
                                   {(filter.name === "Main Type" ||
                                     filter.name === "Coat Type") && (
                                     <Image
-                                      src={`/types/${property[0]}.png`}
+                                      src={`/types/${property[0].toLowerCase()}.png`}
                                       width={25}
                                       height={25}
                                       alt=""
