@@ -283,6 +283,8 @@ const Container = styled.div<{ colors: IColors }>`
     background: ${colors.bg1};
     border-right: 1px solid ${colors.border1};
     overflow-y: auto;
+    position: sticky;
+    top: 0px;
 
     @media (max-width: 867px) {
       width: 100vw;

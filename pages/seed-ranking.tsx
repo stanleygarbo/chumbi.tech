@@ -223,7 +223,6 @@ const Container = styled.div<{ colors: IColors }>`
       z-index: 1;
       flex: 1;
       padding: 20px;
-      height: calc(100vh - 70px);
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
