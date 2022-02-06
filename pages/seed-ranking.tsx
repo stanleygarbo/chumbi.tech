@@ -229,7 +229,7 @@ const Container = styled.div<{ colors: IColors }>`
       align-items: center;
       padding-bottom: 30px;
       @media (max-width: 867px) {
-        padding-bottom: 150px;
+        padding-bottom: 100px;
       }
     }
 
