@@ -287,6 +287,14 @@ const Container = styled.div<{ colors: IColors }>`
     position: sticky;
     top: 0px;
 
+    .footer {
+      height: 70px;
+      width: 100%;
+      color: ${colors.text2 + 60};
+      display: grid;
+      place-items: center;
+    }
+
     @media (max-width: 867px) {
       width: 100vw;
       height: 100vh;
