@@ -35,7 +35,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <img className="hero__nft" alt="" src="/chmb.png"></img>
+        <img className="hero__nft" alt="" src="/ravens-water-melon.png"></img>
       </div>
       <div className="hero__bg-txt">CHUMBI</div>
       <SkewedBorder position="bottom-right" bg={colors.bg1} />
@@ -147,10 +147,12 @@ const StyledHero = styled.section<{ colors: IColors }>`
     }
 
     .hero__nft {
-      width: 1000px;
+      /* width: 1000px; */
+      width: 800px;
 
       position: absolute;
-      top: -100px;
+      /* top: -100px; */
+      top: 50px;
       right: -250px;
     }
 
