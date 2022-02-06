@@ -240,6 +240,10 @@ ${({ colors, isHomePage }) => css`
     }
   }
 
+  .ReactModal__Body--open {
+    overflow: hidden !important;
+  }
+
   .ReactModal__Overlay {
     opacity: 0;
     /* transform: translateX(-100px); */
@@ -259,6 +263,7 @@ ${({ colors, isHomePage }) => css`
 
   .ReactModal__Overlay {
     background-color: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(20px) !important;
 
     display: grid;
     place-items: center;

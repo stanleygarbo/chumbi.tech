@@ -260,6 +260,7 @@ const Filter: React.FC<IFilter> = ({
               </div>
             )
         )}
+      <div className="footer">--Nothing Follows--</div>
     </Container>
   );
 };
@@ -279,7 +280,7 @@ const CheckBoxContent = styled.div`
 const Container = styled.div<{ colors: IColors }>`
   ${({ colors }) => css`
     width: 300px;
-    height: calc(100vh - 70px);
+    height: 100vh;
     background: ${colors.bg1};
     border-right: 1px solid ${colors.border1};
     overflow-y: auto;
