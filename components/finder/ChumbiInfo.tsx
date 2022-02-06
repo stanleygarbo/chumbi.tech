@@ -38,6 +38,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
           />
         )}
       </div>
+      {isLoading && <img src={"/dots-loader.svg"} width={25} alt="" />}
       <div className="side side--info">
         <h1>{data?.name}</h1>
 
@@ -90,10 +91,9 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
             </div>
           </div>
         )}
-        <h2>
-          Rarity Score:{" "}
-          {data?.raritytraitscore && data.raritytraitscore.toFixed(2)}
-        </h2>
+        {data?.raritytraitscore && (
+          <h2>Rarity Score: {data.raritytraitscore.toFixed(2)}</h2>
+        )}
         {data?.chart && (
           <div className="side__rarity-score">
             {data?.chart.map(
@@ -135,7 +135,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
 
 const Container = styled.div<{ colors: IColors }>`
   ${({ colors }) => css`
-    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     height: 100%;

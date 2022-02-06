@@ -187,8 +187,12 @@ const SeedRankingPage: NextPage = () => {
 };
 
 const ModalViewContainer = styled.div`
-  max-width: 1000px;
+  width: 1000px;
   height: 500px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const Container = styled.div<{ colors: IColors }>`
