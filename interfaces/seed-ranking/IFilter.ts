@@ -7,6 +7,8 @@ export interface IFilter {
   data: { [key: string]: number }[] | undefined;
   setFilters: Dispatch<SetStateAction<filterObj[] | undefined>>;
   filters: filterObj[] | undefined;
+  setQueryString: Dispatch<SetStateAction<string>>;
+  queryString: string;
 }
 
 export interface filterObj {

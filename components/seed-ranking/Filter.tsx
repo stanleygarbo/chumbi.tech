@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { useTheme } from "../../contexts/themeContext";
 import { IColors } from "../../interfaces/IColors";
@@ -6,7 +6,6 @@ import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 import { CheckBox } from "../Checkbox";
 import Image from "next/image";
 import { filterObj, IFilter } from "../../interfaces/seed-ranking/IFilter";
-import { useRouter } from "next/router";
 import qs from "qs";
 import { CgClose } from "react-icons/cg";
 
@@ -15,15 +14,9 @@ const Filter: React.FC<IFilter> = ({
   query,
   setFilters,
   filters,
+  setQueryString,
 }) => {
   const { colors } = useTheme();
-
-  const router = useRouter();
-  const [queryString, setQueryString] = useState("");
-
-  useEffect(() => {
-    if (queryString) router.push(`/seed-ranking?${queryString}`);
-  }, [queryString]);
 
   return (
     <Container colors={colors}>

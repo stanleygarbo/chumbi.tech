@@ -24,6 +24,7 @@ const SeedRankingPage: NextPage = () => {
     page: 1,
     filter: [],
   });
+  const [queryString, setQueryString] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const { colors } = useTheme();
   const router = useRouter();
@@ -42,6 +43,10 @@ const SeedRankingPage: NextPage = () => {
     }
   );
   const [filters, setFilters] = useState<filterObj[]>();
+
+  useEffect(() => {
+    if (queryString) router.push(`/seed-ranking?${queryString}`);
+  }, [queryString]);
 
   useEffect(() => {
     let _isMounted = true;
@@ -118,6 +123,8 @@ const SeedRankingPage: NextPage = () => {
     <Container className="hero" colors={colors}>
       {screenWidth > 867 ? (
         <Filter
+          setQueryString={setQueryString}
+          queryString={queryString}
           filters={filters}
           setFilters={setFilters}
           data={data}
@@ -139,6 +146,8 @@ const SeedRankingPage: NextPage = () => {
             ariaHideApp={false}
           >
             <Filter
+              setQueryString={setQueryString}
+              queryString={queryString}
               filters={filters}
               setFilters={setFilters}
               data={data}
@@ -178,6 +187,12 @@ const SeedRankingPage: NextPage = () => {
             currentPage={query.page}
             onPagePick={(selectedPage) => {
               setQuery({ page: selectedPage, filter: query.filter });
+              setQueryString(
+                QueryString.stringify(
+                  { page: selectedPage, filter: query.filter },
+                  { encode: false }
+                )
+              );
             }}
           />
         )}
