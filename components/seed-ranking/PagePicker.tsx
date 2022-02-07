@@ -38,7 +38,7 @@ const PagePicker: React.FC<IPagePicker> = ({
           setPage(Number(e.target.value));
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter" && page < maxPage) {
+          if (e.key === "Enter" && page <= maxPage) {
             onPagePick(page);
           }
         }}
