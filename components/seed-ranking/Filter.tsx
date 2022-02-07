@@ -119,7 +119,9 @@ const Filter: React.FC<IFilter> = ({
                   {filter.properties &&
                     Object.entries(filter.properties).map(
                       (property, propertyIdx) =>
-                        property[0].toLowerCase().includes(filter.txtFilter) ? (
+                        property[0]
+                          .toLowerCase()
+                          .includes(filter.txtFilter.toLowerCase()) ? (
                           <div
                             key={propertyIdx}
                             className={`property__items__item`}
