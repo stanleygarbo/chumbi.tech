@@ -42,6 +42,9 @@ const PagePicker: React.FC<IPagePicker> = ({
             onPagePick(page);
           }
         }}
+        onBlur={() => {
+          setPage(currentPage);
+        }}
       />
       &nbsp;of {maxPage}
       <button
