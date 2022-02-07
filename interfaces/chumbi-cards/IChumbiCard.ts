@@ -6,4 +6,5 @@ export interface IChumbiCard {
   maintype?: string;
   rarityrank?: number;
   coattype?: string;
+  id: number;
 }

@@ -17,4 +17,5 @@ export interface IFetchSingleChumbi {
   name: string;
   rarityrank: number;
   raritytraitscore: number;
+  id: number;
 }

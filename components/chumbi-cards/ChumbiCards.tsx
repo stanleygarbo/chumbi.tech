@@ -16,6 +16,7 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
             >
               <a>
                 <ChumbiCard
+                  id={i.id}
                   edition={i.edition}
                   image={`https://ipfs.io/ipfs/${i.imagehash}`}
                   name={i.name}
@@ -29,6 +30,7 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
           ))
         : data.map((i) => (
             <ChumbiCard
+              id={i.id}
               key={i.edition}
               edition={i.edition}
               image={`https://ipfs.io/ipfs/${i.imagehash}`}

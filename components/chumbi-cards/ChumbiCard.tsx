@@ -13,6 +13,7 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
   maintype,
   rarityrank = 0,
   coattype,
+  id,
 }) => {
   const { colors } = useTheme();
 
@@ -22,7 +23,9 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
   return (
     <Container colors={colors}>
       <div className="header">
-        <div className="header__id">Ranked #{rarityrank}</div>
+        <div className="header__id">
+          Ranked #{rarityrank} [{id}]
+        </div>
         <section>
           <Image
             src={`/seed/${seed}.webp`}

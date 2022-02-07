@@ -7,6 +7,7 @@ export interface IChumbiCards {
     type?: string;
     rarityrank?: number;
     ranking?: number;
+    id: number;
     attributes: {
       traittype: string;
       value: string | number;
