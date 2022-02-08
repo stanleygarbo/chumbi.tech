@@ -18,7 +18,7 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
                 <ChumbiCard
                   id={i.id}
                   edition={i.edition}
-                  image={`https://ipfs.io/ipfs/${i.imagehash}`}
+                  image={`https://chumbi.netlify.app/${i.edition}.png`}
                   name={i.name}
                   seed={i.attributes[8].value.toString().toLowerCase()}
                   maintype={i.attributes[6].value.toString().toLowerCase()}
@@ -33,7 +33,7 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
               id={i.id}
               key={i.edition}
               edition={i.edition}
-              image={`https://ipfs.io/ipfs/${i.imagehash}`}
+              image={`https://chumbi.netlify.app/${i.edition}.png`}
               name={i.name}
               seed={i.attributes[8].value.toString().toLowerCase()}
               maintype={i.attributes[6].value.toString().toLowerCase()}
