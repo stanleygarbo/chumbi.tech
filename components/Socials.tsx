@@ -95,7 +95,7 @@ const RawSocials: React.FC<IRawSocials> = ({
         </div>
       </a>
 
-      <a target="blank" href="https://www.facebook.com/vangeance.gg">
+      <a target="blank" href="https://www.facebook.com/">
         <div
           className={`icon ${colored && "fb colored"} ${
             showBorders && "showBorders"
