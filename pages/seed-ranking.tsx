@@ -56,10 +56,15 @@ const SeedRankingPage: NextPage = () => {
     );
 
     function isInstanceOfQ(obj: any): obj is IFetchChumbiQuery {
-      return "filter" in obj;
+      return "filter" in obj || "page" in obj;
     }
+
     if (isInstanceOfQ(query)) {
-      setQuery(query);
+      const obj = {
+        page: "page" in query ? query.page : 1,
+        filter: "filter" in query ? query.filter : [],
+      };
+      setQuery(obj);
     }
 
     if (data) {
