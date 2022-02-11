@@ -20,6 +20,8 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
   const percentageDeduction =
     Math.round(100 - (rarityrank / 4096) * 100) < 50 ? 100 : 0;
 
+  const ranking = percentageDeduction - (rarityrank / 4096) * 100;
+
   return (
     <Container colors={colors}>
       <div className="header">
@@ -90,9 +92,9 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
         <div className="footer__ranking">
           <span>Rarity:&nbsp;</span>
           {Math.ceil(100 - (rarityrank / 4096) * 100) < 50 ? "bottom " : "top "}
-          {Math.abs(
-            Math.ceil(percentageDeduction - (rarityrank / 4096) * 100)
-          ) + 1}
+          {Math.abs(ranking) < 1
+            ? Math.abs(Number(ranking.toFixed(2)))
+            : Math.abs(Math.ceil(ranking))}
           %
         </div>
       </div>
