@@ -72,12 +72,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/vangeance.gg" target="blank">
+                <a href="https://www.facebook.com/" target="blank">
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/garbo.stanley" target="blank">
+                <a href="https://instagram.com/" target="blank">
                   Instagram
                 </a>
               </li>
