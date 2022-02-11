@@ -33,7 +33,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
         {data?.imagehash && (
           <img
             className="side__chumbi"
-            src={`https://chumbi.netlify.app/${data.edition}.png`}
+            src={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${data.edition}.png`}
             alt=""
           />
         )}
