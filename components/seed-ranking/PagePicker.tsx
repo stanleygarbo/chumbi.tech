@@ -11,7 +11,7 @@ const PagePicker: React.FC<IPagePicker> = ({
   onPagePick,
 }) => {
   const { colors } = useTheme();
-  const [page, setPage] = useState<number>(currentPage);
+  const [page, setPage] = useState<number | string>(currentPage);
 
   useEffect(() => {
     setPage(currentPage);
@@ -32,14 +32,18 @@ const PagePicker: React.FC<IPagePicker> = ({
       <input
         type="number"
         max={maxPage}
-        min={1}
+        min="1"
         value={page}
         onChange={(e) => {
-          setPage(Number(e.target.value));
+          setPage(e.target.value);
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter" && page <= maxPage) {
-            onPagePick(page);
+          if (
+            e.key === "Enter" &&
+            Number(page) <= maxPage &&
+            Number(page) > 0
+          ) {
+            onPagePick(Number(page));
           }
         }}
         onBlur={() => {
