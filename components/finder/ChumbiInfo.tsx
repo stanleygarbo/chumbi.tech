@@ -37,6 +37,14 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
             alt=""
           />
         )}
+
+        <a
+          href={`https://opensea.io/assets/matic/0x5492ef6aeeba1a3896357359ef039a8b11621b45/${data?.edition}`}
+          target="blank"
+        >
+          <img src="/icons/opensea.svg" alt="" width={30} />
+          View on OpenSea
+        </a>
       </div>
       {isLoading && <img src={"/dots-loader.svg"} width={25} alt="" />}
       <div className="side side--info">
@@ -142,6 +150,41 @@ const Container = styled.div<{ colors: IColors }>`
 
     .side {
       width: 50%;
+
+      &:nth-child(1) {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+      }
+
+      a {
+        position: absolute;
+        bottom: 20px;
+
+        border-radius: 100px;
+        padding: 10px 25px 10px 10px;
+
+        text-decoration: none;
+        font-weight: 600;
+
+        color: #000;
+        background: #fff;
+
+        display: flex;
+        align-items: center;
+
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        img {
+          margin-right: 10px;
+        }
+      }
 
       &--info {
         padding: 20px;
