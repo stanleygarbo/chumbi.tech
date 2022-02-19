@@ -152,11 +152,13 @@ const Container = styled.div<{ colors: IColors }>`
       width: 50%;
 
       &:nth-child(1) {
-        position: relative;
+        position: sticky;
         display: flex;
         flex-direction: column;
         align-items: center;
         height: fit-content;
+
+        top: 20px;
       }
 
       a {
@@ -193,8 +195,6 @@ const Container = styled.div<{ colors: IColors }>`
 
       &__chumbi {
         width: 100%;
-        position: sticky;
-        top: 20px;
       }
 
       &__header {
