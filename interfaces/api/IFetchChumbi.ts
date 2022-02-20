@@ -4,4 +4,5 @@ export interface IFetchChumbiQuery {
     name: string;
     value: string[];
   }[];
+  limit?: number;
 }

@@ -18,11 +18,13 @@ import { useRouter } from "next/router";
 import QueryString from "qs";
 import PagePicker from "../components/seed-ranking/PagePicker";
 import ChumbiInfo from "../components/finder/ChumbiInfo";
+import LimitSelector from "../components/seed-ranking/LimitSelector";
 
 const SeedRankingPage: NextPage = () => {
   const [query, setQuery] = useState<IFetchChumbiQuery>({
     page: 1,
     filter: [],
+    limit: 20,
   });
   const [queryString, setQueryString] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
@@ -63,6 +65,7 @@ const SeedRankingPage: NextPage = () => {
       const obj = {
         page: "page" in query ? query.page : 1,
         filter: "filter" in query ? query.filter : [],
+        limit: "limit" in query ? query.limit : 20,
       };
       setQuery(obj);
     }
@@ -163,18 +166,30 @@ const SeedRankingPage: NextPage = () => {
         </>
       )}
       <div className="chumbi-cards">
-        {ChumbiQuery.isLoading && (
-          <Image src="/dots-loader.svg" width={30} height={30} alt="" />
-        )}
+        <div className="chumbi-cards__header">
+          <h2>
+            {ChumbiQuery.data &&
+              `
+              Showing ${ChumbiQuery.data?.chumbi.length} of 
+              ${ChumbiQuery.data?.count} Chumbi`}
+            {ChumbiQuery.isLoading && (
+              <Image src="/dots-loader.svg" width={30} height={30} alt="" />
+            )}
+          </h2>
+
+          <LimitSelector
+            onChange={(limit) => {
+              setQuery({ ...query, limit });
+            }}
+            value={query.limit}
+          />
+        </div>
         {ChumbiQuery.data && (
-          <>
-            <h2>{ChumbiQuery.data.count} Chumbi</h2>
-            <ChumbiCards
-              linkTo={screenWidth > 1000 ? "/seed-ranking?id=" : "/finder/"}
-              linkAs={screenWidth > 1000 ? "/finder/" : undefined}
-              data={ChumbiQuery.data.chumbi}
-            />
-          </>
+          <ChumbiCards
+            linkTo={screenWidth > 1000 ? "/seed-ranking?id=" : "/finder/"}
+            linkAs={screenWidth > 1000 ? "/finder/" : undefined}
+            data={ChumbiQuery.data.chumbi}
+          />
         )}
         <Modal
           isOpen={!!router.query.id}
@@ -194,7 +209,11 @@ const SeedRankingPage: NextPage = () => {
               setQuery({ page: selectedPage, filter: query.filter });
               setQueryString(
                 QueryString.stringify(
-                  { page: selectedPage, filter: query.filter },
+                  {
+                    page: selectedPage,
+                    filter: query.filter,
+                    limit: query.limit,
+                  },
                   { encode: false }
                 )
               );
@@ -220,10 +239,6 @@ const Container = styled.div<{ colors: IColors }>`
     display: flex;
     justify-content: center;
 
-    h2 {
-      width: 100%;
-    }
-
     .chumbi-cards {
       z-index: 1;
       flex: 1;
@@ -233,6 +248,21 @@ const Container = styled.div<{ colors: IColors }>`
       flex-direction: column;
       align-items: center;
       padding-bottom: 30px;
+
+      &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+          margin: 0;
+
+          @media (max-width: 429px) {
+            font-size: 13px;
+          }
+        }
+      }
       @media (max-width: 867px) {
         padding-bottom: 100px;
       }
