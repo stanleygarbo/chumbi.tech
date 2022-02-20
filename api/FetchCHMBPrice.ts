@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const FetchCHMBPrice = () => {
+const FetchCHMBPrice = (fiatCurrency: string) => {
   return axios
     .get(
-      `https://api.coingecko.com/api/v3/simple/price?ids=chumbai-valley&vs_currencies=php&include_24hr_change=true`
+      `https://api.coingecko.com/api/v3/simple/price?ids=chumbai-valley&vs_currencies=${fiatCurrency}&include_24hr_change=true`
     )
     .then((res) => res.data);
 };
