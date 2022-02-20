@@ -145,7 +145,10 @@ const SeedRankingPage: NextPage = () => {
             className={`filter-show ${isFilterOpen && "filter-show--close"}`}
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
-            {isFilterOpen ? <CgClose /> : "Filters"}
+            {isFilterOpen ? <CgClose /> : "Filters"}{" "}
+            {query.filter.length > 0 && !isFilterOpen && (
+              <span>{query.filter.length}</span>
+            )}
           </button>
           <Modal
             isOpen={isFilterOpen}
@@ -287,6 +290,19 @@ const Container = styled.div<{ colors: IColors }>`
       justify-content: center;
       align-items: center;
       z-index: 20;
+
+      @media (min-width: 867px) {
+        display: none;
+      }
+
+      span {
+        background: #fff;
+        width: 25px;
+        height: 25px;
+        margin-left: 10px;
+        border-radius: 100%;
+        color: ${colors.accent};
+      }
 
       &--close {
         background: ${colors.danger};
