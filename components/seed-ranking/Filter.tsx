@@ -36,7 +36,7 @@ const Filter: React.FC<IFilter> = ({
             });
 
             setFilters(newArr);
-            setQuery({ page: query.page, filter: [] });
+            setQuery({ page: 1, filter: [], limit: query.limit });
             setQueryString(
               qs.stringify(
                 { page: query.page, filter: [] },
@@ -172,6 +172,7 @@ const Filter: React.FC<IFilter> = ({
 
                                   setQuery({
                                     page,
+                                    limit: query.limit,
                                     filter: newQueryFilter,
                                   });
 
