@@ -19,6 +19,7 @@ import QueryString from "qs";
 import PagePicker from "../components/seed-ranking/PagePicker";
 import ChumbiInfo from "../components/finder/ChumbiInfo";
 import LimitSelector from "../components/seed-ranking/LimitSelector";
+import Head from "next/head";
 
 const SeedRankingPage: NextPage = () => {
   const [query, setQuery] = useState<IFetchChumbiQuery>({
@@ -129,6 +130,19 @@ const SeedRankingPage: NextPage = () => {
 
   return (
     <Container className="hero" colors={colors}>
+      <Head>
+        <title>
+          Seed chumbi rarity ranking | Chumbi explorer | Chumbi Technologies
+        </title>
+        <meta
+          name="description"
+          content="
+          Chumbi explorer, chumbi finder, chumbi rarity ranking.
+          Chumbi Technologies is a dedicated information site to Chumbi Valley, an enchanting
+            role-playing blockchain game built on top of BSC and Polygon."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {screenWidth > 867 ? (
         <Filter
           setQueryString={setQueryString}
