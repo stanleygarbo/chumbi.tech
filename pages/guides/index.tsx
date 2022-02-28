@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import styled, { css } from "styled-components";
 import ComingSoon from "../../components/ComingSoon";
 import { useTheme } from "../../contexts/themeContext";
@@ -10,6 +11,17 @@ const Custom404: NextPage = () => {
   return (
     <Container colors={colors} className="hero">
       {/* <img src="/gradient.png" alt="" /> */}
+
+      <Head>
+        <title>A guide to Chumbi Valley | Chumbi Technologies</title>
+        <meta
+          name="description"
+          content="A beginner's guide to chumbi valley. 
+          Chumbi Technologies is a dedicated information site to Chumbi Valley, an enchanting
+            role-playing blockchain game built on top of BSC and Polygon."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <ComingSoon />
     </Container>
   );

@@ -19,8 +19,9 @@ const Home: NextPage = () => {
         </title>
         <meta
           name="description"
-          content="Chumbi Technologies is a dedicated information site to Chumbi Valley, an enchanting
-            role-playing blockchain game built on top of BSC and Polygon."
+          content="Chumbi Technologies is a dedicated information site to Chumbi Valley. 
+          Use our tools and guides. Chumbi tracker, $CHMB staking tracker, avatar generator, 
+          guides, Chumbi Explorer."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

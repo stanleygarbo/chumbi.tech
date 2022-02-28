@@ -1,5 +1,6 @@
 import moment from "moment";
 import { NextPage } from "next";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Pools from "../../components/tracker/staking-rewards/Pools";
@@ -75,6 +76,18 @@ const StakingRewardsPage: NextPage = () => {
 
   return (
     <Container className="tracker" style={{ backgroundColor: colors.bg2 }}>
+      <Head>
+        <title>
+          CHMB Staking rewards | Chumbi Technologies | Chumbi Tracker
+        </title>
+        <meta
+          name="description"
+          content="Your CHMB Staking rewards. A tracker for Chumbi valley. 
+          Chumbi Technologies is a dedicated information site to Chumbi Valley, an enchanting
+            role-playing blockchain game built on top of BSC and Polygon."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="tracker__wrapper">
         <Pools
           pools={[

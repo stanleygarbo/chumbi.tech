@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import styled, { css } from "styled-components";
@@ -38,6 +39,16 @@ const Chumbi: NextPage = () => {
 
   return (
     <Container colors={colors} className="tracker">
+      <Head>
+        <title>Your Chumbi | Chumbi Technologies | Chumbi Tracker</title>
+        <meta
+          name="description"
+          content="Your Chumbi. A tracker for Chumbi valley. 
+          Chumbi Technologies is a dedicated information site to Chumbi Valley, an enchanting
+            role-playing blockchain game built on top of BSC and Polygon."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="content">
         <h2>
           Your Chumbi:&nbsp;
