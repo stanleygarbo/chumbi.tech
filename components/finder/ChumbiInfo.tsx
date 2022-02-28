@@ -29,7 +29,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
 
   return (
     <Container colors={colors}>
-      <div className="side">
+      <div className="side side--img">
         {data?.imagehash && (
           <img
             className="side__chumbi"
@@ -147,11 +147,12 @@ const Container = styled.div<{ colors: IColors }>`
     margin: 0 auto;
     display: flex;
     height: 100%;
+    background-color: ${colors.bg1};
 
     .side {
       width: 50%;
 
-      &:nth-child(1) {
+      &--img {
         position: sticky;
         display: flex;
         flex-direction: column;
@@ -266,6 +267,11 @@ const Container = styled.div<{ colors: IColors }>`
 
         &--info {
           padding-left: 0px;
+        }
+
+        &--img {
+          position: relative;
+          margin-bottom: 20px;
         }
 
         &__chumbi {

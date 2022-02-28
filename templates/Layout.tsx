@@ -264,6 +264,7 @@ ${({ colors, isHomePage }) => css`
   .ReactModal__Overlay {
     background-color: rgba(0, 0, 0, 0.5) !important;
     backdrop-filter: blur(20px) !important;
+    height: 100% !important;
 
     display: grid;
     place-items: center;
@@ -273,11 +274,11 @@ ${({ colors, isHomePage }) => css`
     display: grid;
     place-items: center;
     position: relative !important;
-    background-color: ${colors.bg1} !important;
+    background-color: transparent !important;
     border: none !important;
     inset: 0px !important;
     width: fit-content !important;
-    height: fit-content !important;
+    height: 100% !important;
     padding: 0px !important;
     border-radius: 0px !important;
     margin: 0px 20px !important;
@@ -292,6 +293,7 @@ ${({ colors, isHomePage }) => css`
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+      background-color: ${colors.bg1};
 
       &__close {
         width: 50px;

@@ -380,7 +380,7 @@ const Container = styled.div<{ colors: IColors }>`
 
     @media (max-width: 867px) {
       width: 100vw;
-      height: 100vh;
+      height: 100%;
       padding-bottom: 100px;
     }
 
