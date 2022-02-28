@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { useQuery } from "react-query";
 import styled, { css } from "styled-components";
@@ -13,6 +14,8 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
     ["chumbi_", id],
     () => FetchSingleChumbi(id)
   );
+
+  const router = useRouter();
 
   const { colors } = useTheme();
   const mainType = data?.attributes[6].value;
@@ -47,7 +50,11 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
         </a>
       </div>
       {isLoading && <img src={"/dots-loader.svg"} width={25} alt="" />}
-      <div className="side side--info">
+      <div
+        className={`side side--info ${
+          router.asPath.includes("/finder/") ? "side--not-modal" : ""
+        }`}
+      >
         <h1>{data?.name}</h1>
 
         {data && (
@@ -148,6 +155,7 @@ const Container = styled.div<{ colors: IColors }>`
     display: flex;
     height: 100%;
     background-color: ${colors.bg1};
+    overflow-y: auto;
 
     .side {
       width: 50%;
@@ -158,8 +166,11 @@ const Container = styled.div<{ colors: IColors }>`
         flex-direction: column;
         align-items: center;
         height: fit-content;
+        top: 0px;
+      }
 
-        top: 20px;
+      &__chumbi {
+        width: 100%;
       }
 
       a {
@@ -191,11 +202,10 @@ const Container = styled.div<{ colors: IColors }>`
 
       &--info {
         padding: 20px;
-        overflow-y: auto;
       }
 
-      &__chumbi {
-        width: 100%;
+      &--not-modal {
+        padding-top: 0;
       }
 
       &__header {
@@ -259,6 +269,7 @@ const Container = styled.div<{ colors: IColors }>`
         }
       }
     }
+
     @media (max-width: 752px) {
       flex-direction: column;
 
@@ -268,15 +279,14 @@ const Container = styled.div<{ colors: IColors }>`
         &--info {
           padding: 0px;
           margin-bottom: 20px;
+          overflow-y: unset;
+          position: relative;
         }
 
         &--img {
           position: relative;
           top: 0px;
-        }
 
-        &__chumbi {
-          position: relative;
           margin-bottom: 20px;
         }
       }
