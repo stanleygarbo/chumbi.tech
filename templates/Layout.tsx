@@ -278,7 +278,6 @@ ${({ colors, isHomePage }) => css`
     border: none !important;
     inset: 0px !important;
     width: fit-content !important;
-    height: 100% !important;
     padding: 0px !important;
     border-radius: 0px !important;
     margin: 0px 20px !important;

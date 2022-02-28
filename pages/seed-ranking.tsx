@@ -169,6 +169,11 @@ const SeedRankingPage: NextPage = () => {
             closeTimeoutMS={200}
             onRequestClose={() => setIsFilterOpen(false)}
             ariaHideApp={false}
+            style={{
+              content: {
+                height: "100%",
+              },
+            }}
           >
             <Filter
               setQueryString={setQueryString}
