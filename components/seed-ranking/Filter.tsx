@@ -9,6 +9,17 @@ import { filterObj, IFilter } from "../../interfaces/seed-ranking/IFilter";
 import qs from "qs";
 import { CgClose } from "react-icons/cg";
 
+import * as Yup from "yup";
+import { FormikField } from "../FormikField";
+import { Form, Formik } from "formik";
+import { FiSearch } from "react-icons/fi";
+import { useRouter } from "next/router";
+import { useScreenSize } from "../../contexts/screenSizeContext";
+
+const ChubmiIDSchema = Yup.object().shape({
+  id: Yup.number().min(1, "Too low").required("Required"),
+});
+
 const Filter: React.FC<IFilter> = ({
   setQuery,
   query,
@@ -17,6 +28,21 @@ const Filter: React.FC<IFilter> = ({
   setQueryString,
 }) => {
   const { colors } = useTheme();
+
+  const inputFieldStyles = {
+    padding: "9px 10px",
+    background: colors.bg1,
+    width: "100%",
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  };
+
+  const errorFieldStyle = {
+    border: `1px solid ${colors.danger}`,
+  };
+
+  const router = useRouter();
+  const { screenWidth } = useScreenSize();
 
   return (
     <Container colors={colors}>
@@ -51,6 +77,39 @@ const Filter: React.FC<IFilter> = ({
         </button>
       </div>
 
+      <div className="property">
+        <Formik
+          validationSchema={ChubmiIDSchema}
+          initialValues={{ id: "" }}
+          onSubmit={(values, { resetForm }) => {
+            router.push(
+              screenWidth > 1000
+                ? `/seed-ranking?id=${values.id}`
+                : `/finder/${values.id}`
+            );
+            resetForm();
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <FormikField
+                colors={colors}
+                placeholder="Enter Chumbi ID"
+                name="id"
+                autoComplete="off"
+                type="number"
+                style={{
+                  ...inputFieldStyles,
+                  ...(errors.id && touched.id && errorFieldStyle),
+                }}
+              />
+              <button className="find" type="submit">
+                Search
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
       {filters &&
         filters.map(
           (filter, filterIdx) =>
@@ -289,6 +348,27 @@ const Container = styled.div<{ colors: IColors }>`
     overflow-y: auto;
     position: sticky;
     top: 0px;
+
+    form {
+      display: flex;
+      padding: 20px;
+
+      button {
+        align-self: flex-end;
+        border: none;
+        border-radius: 3px;
+        background-color: ${colors.accent};
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 43px;
+        padding: 0 10px;
+
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+    }
 
     .footer {
       height: 70px;
