@@ -18,7 +18,7 @@ export const FormikField = styled(Field)<{
       color: ${colors.text2 + "90"};
     }
     background-color: ${bg ? bg : colors.bg1};
-    border: 1px solid ${colors.text1 + 30};
+    border: 1px solid ${colors.border1};
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
       display: none;
