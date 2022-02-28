@@ -266,18 +266,17 @@ const Container = styled.div<{ colors: IColors }>`
         width: 100%;
 
         &--info {
-          padding-left: 0px;
+          padding: 0px;
+          margin-bottom: 20px;
         }
 
         &--img {
           position: relative;
-          margin-bottom: 20px;
+          top: 0px;
         }
 
         &__chumbi {
-          width: 100%;
           position: relative;
-          top: 0px;
           margin-bottom: 20px;
         }
       }
