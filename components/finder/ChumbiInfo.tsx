@@ -129,7 +129,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
                     </div>
                     <div className={`side__rarity-score__bar`}>
                       <div
-                        className={`side__rarity-score__bar__score ${mainType}`}
+                        className={`side__rarity-score__bar__score ${mainType}-bg`}
                         style={{
                           width:
                             (highestRarityScore
