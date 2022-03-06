@@ -72,7 +72,7 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
         </div>
       </div>
       {/* <img src={image} alt="chumbi" className="chumbi" /> */}
-      <div className="chumbi">
+      <div className="chumbi-img">
         {/* {isLoading ? (
           <Image src="/ripple-loader.svg" priority width={50} height={50} />
         ) : ( */}
@@ -220,7 +220,7 @@ const Container = styled.div<{ colors: IColors }>`
       }
     }
 
-    .chumbi {
+    .chumbi-img {
       /* height: 400px; */
       /* height: 205px; */
       border-radius: 10px;

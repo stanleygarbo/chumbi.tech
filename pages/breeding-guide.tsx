@@ -1,10 +1,11 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import Hero from "../components/breeding-guide/Hero";
+import BreedingSim from "../components/breeding-guide/BreedingSim";
+// import Hero from "../components/breeding-guide/Hero";
 
 const BreedingGuide: NextPage = () => {
   return (
-    <div>
+    <div className="hero">
       <Head>
         <title>Chumbi breeding guide for beginners | Chumbi Technologies</title>
         <meta
@@ -15,7 +16,8 @@ const BreedingGuide: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Hero />
+      {/* <Hero /> */}
+      <BreedingSim />
     </div>
   );
 };
