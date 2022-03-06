@@ -55,7 +55,9 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
           router.asPath.includes("/finder/") ? "side--not-modal" : ""
         }`}
       >
-        <h1>{data?.name}</h1>
+        <h1>
+          {data?.name} #{data?.edition}
+        </h1>
 
         {data && (
           <div className="side__header">
@@ -107,7 +109,10 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
           </div>
         )}
         {data?.raritytraitscore && (
-          <h2>Rarity Score: {data.raritytraitscore.toFixed(2)}</h2>
+          <>
+            <h2>Rarity Score: {data.raritytraitscore.toFixed(2)}</h2>
+            <h2>Ranked #{data.rarityrank}</h2>
+          </>
         )}
         {data?.chart && (
           <div className="side__rarity-score">
