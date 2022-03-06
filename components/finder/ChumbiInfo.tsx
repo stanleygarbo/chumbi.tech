@@ -12,7 +12,10 @@ import { IColors } from "../../interfaces/IColors";
 const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
   const { data, isLoading } = useQuery<IFetchSingleChumbi>(
     ["chumbi_", id],
-    () => FetchSingleChumbi(id)
+    () => FetchSingleChumbi(id),
+    {
+      staleTime: Infinity,
+    }
   );
 
   const router = useRouter();
@@ -50,9 +53,10 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
         </a>
       </div>
       {isLoading && <img src={"/dots-loader.svg"} width={25} alt="" />}
+      {console.log(router)}
       <div
         className={`side side--info ${
-          router.asPath.includes("/finder/") ? "side--not-modal" : ""
+          router.pathname !== "/seed-ranking" ? "side--not-modal" : ""
         }`}
       >
         <h1>
