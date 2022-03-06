@@ -7,12 +7,10 @@ const BreedingGuide: NextPage = () => {
   return (
     <div className="hero">
       <Head>
-        <title>Chumbi breeding guide for beginners | Chumbi Technologies</title>
+        <title>Chumbi Breeding Simulator | Chumbi Technologies</title>
         <meta
           name="description"
-          content="Check out our breeding guide and make breeding predictable. 
-          Chumbi Technologies is a dedicated information site to Chumbi Valley, an enchanting
-            role-playing blockchain game built on top of BSC and Polygon."
+          content="Before breeding Chumbi, you can test the outcome and your luck as often as want with the ChumbiTech Breeding Simulator."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

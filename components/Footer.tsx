@@ -42,7 +42,7 @@ const Footer = () => {
                 <Link href="/guides">Guides</Link>
               </li>
               <li>
-                <Link href="/breeding-guide">Breeding</Link>
+                <Link href="/breeding-simulator">Breeding</Link>
               </li>
               <li>
                 <Link href="/donate">Donate</Link>

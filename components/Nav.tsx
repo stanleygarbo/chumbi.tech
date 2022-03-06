@@ -69,9 +69,11 @@ const Nav = () => {
             </li>
 
             <li
-              className={router.pathname === "/breeding-guide" ? "active" : ""}
+              className={
+                router.pathname === "/breeding-simulator" ? "active" : ""
+              }
             >
-              <Link href="/breeding-guide" passHref>
+              <Link href="/breeding-simulator" passHref>
                 Breeding
               </Link>
             </li>
@@ -159,9 +161,11 @@ const Nav = () => {
             </li>
 
             <li
-              className={router.pathname === "/breeding-guide" ? "active" : ""}
+              className={
+                router.pathname === "/breeding-simulator" ? "active" : ""
+              }
             >
-              <Link href="/breeding-guide" passHref>
+              <Link href="/breeding-simulator" passHref>
                 <a onClick={() => setIsMenuOpen(false)}>Breeding</a>
               </Link>
             </li>
