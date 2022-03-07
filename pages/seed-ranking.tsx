@@ -126,7 +126,7 @@ const SeedRankingPage: NextPage = () => {
     return () => {
       _isMounted = false;
     };
-  }, [data, router.asPath]);
+  }, [data]);
 
   return (
     <Container className="hero" colors={colors}>
