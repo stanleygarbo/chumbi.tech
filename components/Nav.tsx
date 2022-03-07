@@ -62,11 +62,11 @@ const Nav = () => {
                 Seed Ranking
               </Link>
             </li>
-            <li className={router.pathname === "/guides" ? "active" : ""}>
+            {/* <li className={router.pathname === "/guides" ? "active" : ""}>
               <Link href="/guides" passHref>
                 Guides
               </Link>
-            </li>
+            </li> */}
 
             <li
               className={
@@ -74,7 +74,7 @@ const Nav = () => {
               }
             >
               <Link href="/breeding-simulator" passHref>
-                Breeding
+                Breeding Simulator
               </Link>
             </li>
 
@@ -166,7 +166,7 @@ const Nav = () => {
               }
             >
               <Link href="/breeding-simulator" passHref>
-                <a onClick={() => setIsMenuOpen(false)}>Breeding</a>
+                <a onClick={() => setIsMenuOpen(false)}>Breeding Simulator</a>
               </Link>
             </li>
 
