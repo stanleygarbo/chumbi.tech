@@ -11,10 +11,10 @@ const Odds: React.FC<{ data?: IOdds }> = ({ data }) => {
     return (
       <Container colors={colors}>
         <p className="breeding-info">
-          This breeding simulator can be used to try your luck on what offspring
-          chumbi you&apos;ll hatch. gen 1 chumbi parts are still unkown, this
-          tool will help you identify how likely some traits will appear on your
-          chumbi offspring. Come and test your luck!
+          Before breeding Chumbi, you can test the outcome and your luck as
+          often as want with the ChumbiTech Breeding Simulator. The images of
+          some traits are still unkown, instead you&apos;ll be able to know the
+          coat, type, size and if it is shiny.
         </p>
         <div className="percentage">
           <div className="percentage__title">Shiny</div>
