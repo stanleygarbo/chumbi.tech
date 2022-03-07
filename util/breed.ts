@@ -49,6 +49,17 @@ const types = [
   "void",
 ];
 
+const tier1Types = [
+  "neutral",
+  "forest",
+  "cave",
+  "flame",
+  "river",
+  "mountain",
+  "spark",
+  "insect",
+];
+
 export function getOdds({ parent1, parent2 }: IBreed): IOdds {
   const odds = {
     shiny: 0,
@@ -127,7 +138,8 @@ export function breed({ parent1, parent2 }: IBreed): IOffspring {
     offspring.coatType = types[Math.floor(Math.random() * types.length)];
   }
 
-  offspring.mainType = types[Math.floor(Math.random() * types.length)];
+  offspring.mainType =
+    tier1Types[Math.floor(Math.random() * tier1Types.length)];
 
   offspring.isMini = Math.random() * 100 < odds.mini;
   offspring.isShiny = Math.random() * 100 < odds.shiny;
