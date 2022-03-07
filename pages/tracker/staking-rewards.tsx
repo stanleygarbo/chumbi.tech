@@ -2,6 +2,7 @@ import moment from "moment";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 import Pools from "../../components/tracker/staking-rewards/Pools";
 import StakingRewards from "../../components/tracker/staking-rewards/StakingRewards";
@@ -33,35 +34,37 @@ const StakingRewardsPage: NextPage = () => {
   const { stakingData, current, totalCHMB } = useWallet();
   const { colors } = useTheme();
 
+  const stakingData90Query = useQuery(
+    ["StakingData90", current],
+    () => {
+      return stakingData ? stakingData({ duration: 90 }) : null;
+    },
+    {
+      staleTime: Infinity,
+    }
+  );
+
+  const stakingData180Query = useQuery(
+    ["StakingData180", current],
+    () => (stakingData ? stakingData({ duration: 180 }) : null),
+    {
+      staleTime: Infinity,
+    }
+  );
+
+  const stakingData365Query = useQuery(
+    ["StakingData365", current],
+    () => (stakingData ? stakingData({ duration: 365 }) : null),
+    {
+      staleTime: Infinity,
+    }
+  );
+
   useEffect(() => {
     let _isMounted = true;
-    setData({});
 
     (async function () {
       if (stakingData) {
-        const joined: {
-          d90?: IStakingData;
-          d180?: IStakingData;
-          d365?: IStakingData;
-        } = {};
-
-        const stakeData90 = await stakingData({ duration: 90 });
-        if (stakeData90 && _isMounted) {
-          joined.d90 = stakeData90;
-          console.log(stakeData90);
-          setData({ d90: stakeData90 });
-        }
-        const stakeData180 = await stakingData({ duration: 180 });
-        if (stakeData180 && _isMounted) {
-          joined.d180 = stakeData180;
-          setData({ ...joined, d180: stakeData180 });
-        }
-        const stakeData365 = await stakingData({ duration: 365 });
-        if (stakeData365 && _isMounted) {
-          joined.d365 = stakeData365;
-          setData({ ...joined, d365: stakeData365 });
-        }
-
         if (current && _isMounted) {
           const res = await totalCHMB(current);
           if (res) setTotalTokens({ CHMB: res });
@@ -105,7 +108,7 @@ const StakingRewardsPage: NextPage = () => {
                     .toFixed(0)
                 )
               } days`,
-              APR: data?.d90?.APR,
+              APR: stakingData90Query.data?.APR,
               formula: "SC / TS * 100",
             },
             {
@@ -122,7 +125,7 @@ const StakingRewardsPage: NextPage = () => {
                     .toFixed(0)
                 )
               } days`,
-              APR: data?.d180?.APR,
+              APR: stakingData180Query.data?.APR,
               formula: "SC / TS * 150",
             },
             {
@@ -139,7 +142,7 @@ const StakingRewardsPage: NextPage = () => {
                     .toFixed(0)
                 )
               } days`,
-              APR: data?.d365?.APR,
+              APR: stakingData365Query.data?.APR,
               formula: "SC / TS * 196.72129",
             },
           ]}
@@ -154,13 +157,23 @@ const StakingRewardsPage: NextPage = () => {
           />
           <StakingRewards
             totalTokens={totalTokens}
+            // stakingData={
+            //   data && selectedDuration === 90
+            //     ? data.d90
+            //     : data && selectedDuration === 180
+            //     ? data.d180
+            //     : data && selectedDuration === 365
+            //     ? data.d365
+            //     : {}
+            // }
+
             stakingData={
-              data && selectedDuration === 90
-                ? data.d90
-                : data && selectedDuration === 180
-                ? data.d180
-                : data && selectedDuration === 365
-                ? data.d365
+              stakingData90Query.data && selectedDuration === 90
+                ? stakingData90Query.data
+                : stakingData180Query.data && selectedDuration === 180
+                ? stakingData180Query.data
+                : stakingData365Query.data && selectedDuration === 365
+                ? stakingData365Query.data
                 : {}
             }
           />
