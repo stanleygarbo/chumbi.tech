@@ -49,7 +49,7 @@ const SeedRankingPage: NextPage = () => {
 
   useEffect(() => {
     if (queryString) router.push(`/seed-ranking?${queryString}`);
-  }, [queryString, router.push]);
+  }, [queryString]);
 
   useEffect(() => {
     let _isMounted = true;
