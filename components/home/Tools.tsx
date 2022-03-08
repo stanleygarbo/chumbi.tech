@@ -76,9 +76,9 @@ const Tools = () => {
                 alt=""
               />
             </div>
-            <h2>Breeding Guide</h2>
-            <p>Learn which chumbi you will get when breeding certain types.</p>
-            <Button onClick={() => push("/breeding-guide")}>Open</Button>
+            <h2>Breeding Simulator</h2>
+            <p>Test the outcome and your luck with our Breeding Simulator.</p>
+            <Button onClick={() => push("/breeding-simulator")}>Open</Button>
           </div>
         </div>
       </div>
