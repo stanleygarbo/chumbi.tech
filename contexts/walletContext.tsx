@@ -184,6 +184,15 @@ const useWalletContext = () => {
     const { ethereum } = window;
 
     async function asynInit() {
+      // check if wallet address os saved
+      const savedWalletAddress = localStorage.getItem("SavedWallet");
+
+      if (savedWalletAddress) {
+        console.log(savedWalletAddress);
+        setCurrent(savedWalletAddress);
+        return;
+      }
+
       // connect automatically if the user has already connected wallet before
       const hasConnectedWalletBefore = localStorage.getItem("WalletConnected");
       if (hasConnectedWalletBefore) {

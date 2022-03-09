@@ -45,6 +45,7 @@ const ConnectWallet: React.FC = () => {
           initialValues={{ walletAddress: "" }}
           onSubmit={(values, { resetForm }) => {
             setCurrent(values.walletAddress);
+            localStorage.setItem("SavedWallet", values.walletAddress);
           }}
         >
           {({ errors, touched }) => (
