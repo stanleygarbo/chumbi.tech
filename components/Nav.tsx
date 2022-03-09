@@ -37,7 +37,10 @@ const Nav = () => {
             <li
               className={router.pathname.includes("/tracker") ? "active" : ""}
             >
-              <Link href={`/tracker${current ? "/chumbi" : ""}`} passHref>
+              <Link
+                href={`/tracker/${current ? current + "/chumbi" : ""}`}
+                passHref
+              >
                 Tracker
               </Link>
             </li>
