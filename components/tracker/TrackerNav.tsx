@@ -3,25 +3,28 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled, { css } from "styled-components";
 import { useTheme } from "../../contexts/themeContext";
+import { useWallet } from "../../contexts/walletContext";
 import { IColors } from "../../interfaces/IColors";
 import CHMBTicker from "../tickers/CHMBTicker";
 
 const TrackerNav: React.FC = () => {
   const { colors } = useTheme();
   const { pathname } = useRouter();
+  const { current } = useWallet();
 
   return (
     <Container colors={colors}>
       <div className="tracker-nav">
         <ul className="tracker-nav__links">
-          <li className={pathname === "/tracker/chumbi" ? "active" : ""}>
-            <Link href="/tracker/chumbi">Chumbi</Link>
+          <li className={pathname.includes("/chumbi") ? "active" : ""}>
+            <Link href={`/tracker/${current}/chumbi`}>Chumbi</Link>
           </li>
 
-          <li
-            className={pathname === "/tracker/staking-rewards" ? "active" : ""}
-          >
-            <Link href="/tracker/staking-rewards">Staking</Link>
+          <li className={pathname.includes("/inventory") ? "active" : ""}>
+            <Link href={`/tracker/${current}/inventory`}>Inventory</Link>
+          </li>
+          <li className={pathname.includes("/staking-rewards") ? "active" : ""}>
+            <Link href={`/tracker/${current}/staking-rewards`}>Staking</Link>
           </li>
           {/* <li className={pathname === "/tracker/chumbi-finder" ? "active" : ""}>
             <Link href="/tracker/chumbi-finder">Chumbi Finder</Link>
