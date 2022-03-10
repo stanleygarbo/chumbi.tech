@@ -10,7 +10,7 @@ import { IFoundersCollectionNFT } from "../../../interfaces/api/IFetchFoundersCo
 import { IColors } from "../../../interfaces/IColors";
 import { isWalletAddressValid } from "../../../util/isWalletAddressValid";
 
-const inventory: NextPage = () => {
+const InventoryPage: NextPage = () => {
   const router = useRouter();
   const { address } = router.query;
   const { colors } = useTheme();
@@ -61,4 +61,4 @@ const Container = styled.div<{ colors: IColors }>`
   `}
 `;
 
-export default inventory;
+export default InventoryPage;

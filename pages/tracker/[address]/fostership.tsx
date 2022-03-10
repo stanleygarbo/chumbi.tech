@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import ComingSoon from "../../components/ComingSoon";
+import ComingSoon from "../../../components/ComingSoon";
 
 const fostership: NextPage = () => {
   return (
