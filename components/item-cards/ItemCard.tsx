@@ -10,7 +10,9 @@ const ItemCard: React.FC<IItemCard> = ({ name, id, attributes, image }) => {
   return (
     <Container colors={colors}>
       <div className="id">#{id}</div>
-      <img src={image} alt={name} />
+      <div className="img">
+        <img src={image} alt={name} />
+      </div>
 
       <h6>{name}</h6>
 
@@ -42,10 +44,25 @@ const Container = styled.div<{ colors: IColors }>`
       padding-bottom: 5px;
     }
 
-    img {
+    .img {
       border-radius: 10px;
-      height: 230px;
-      width: 230px;
+      width: 100%;
+
+      overflow: hidden;
+      margin: 10px 0px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      img {
+        width: 100%;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+        /* initial ratio of 1:1*/
+      }
     }
 
     h6 {

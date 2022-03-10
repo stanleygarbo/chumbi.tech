@@ -13,17 +13,15 @@ const Inventory: React.FC<{ data: IFoundersCollectionNFT[] }> = ({ data }) => {
       colors={colors}
       style={{ justifyContent: data.length > 4 ? "center" : "" }}
     >
-      {data.map(
-        (i, idx) => (
-            <ItemCard
-              key={idx}
-              id={i.token_id}
-              name={i.name}
-              attributes={i.attributes}
-              image={i.image}
-            />
-          )
-      )}
+      {data.map((i, idx) => (
+        <ItemCard
+          key={idx}
+          id={i.token_id}
+          name={i.name}
+          attributes={i.attributes}
+          image={i.image}
+        />
+      ))}
     </Container>
   );
 };
@@ -43,9 +41,10 @@ const Container = styled.div<{ colors: IColors }>`
     margin-top: 20px;
     & > * {
       width: 250px;
-      @media (max-width: 410px) {
-        width: 100%;
-      }
+    }
+
+    @media (max-width: 410px) {
+      justify-content: center;
     }
   `}
 `;
