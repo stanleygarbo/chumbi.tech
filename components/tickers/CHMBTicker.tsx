@@ -122,6 +122,7 @@ const Container = styled.div<{ colors: IColors; didGoUp: boolean }>`
         display: flex;
         align-items: center;
         position: relative;
+        display: flex;
 
         /* background: ${colors.bg1}; */
         /* border: 1px solid ${colors.border1}; */
@@ -137,12 +138,14 @@ const Container = styled.div<{ colors: IColors; didGoUp: boolean }>`
           color: ${colors.text2};
           font-size: 14px;
           font-weight: 600;
+          white-space: nowrap;
         }
 
         &__change {
           color: ${didGoUp ? colors.success : colors.danger};
           font-size: 12px;
           margin-left: 5px;
+          white-space: nowrap;
         }
       }
     }

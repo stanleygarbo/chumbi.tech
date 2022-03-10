@@ -49,6 +49,10 @@ const Container = styled.div<{ colors: IColors }>`
       max-width: 1140px;
       padding: 0px 20px 0px 20px;
       margin: 0 auto;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       color: ${colors.text2};
 
