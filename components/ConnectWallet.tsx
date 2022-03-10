@@ -43,9 +43,11 @@ const ConnectWallet: React.FC = () => {
         <Formik
           validationSchema={ChubmiIDSchema}
           initialValues={{ walletAddress: "" }}
-          onSubmit={(values, { resetForm }) => {
+          onSubmit={(values) => {
             setCurrent(values.walletAddress);
-            localStorage.setItem("SavedWallet", values.walletAddress);
+
+            if (isRememberChecked)
+              localStorage.setItem("SavedWallet", values.walletAddress);
           }}
         >
           {({ errors, touched }) => (
