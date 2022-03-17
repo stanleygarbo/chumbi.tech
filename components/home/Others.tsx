@@ -23,7 +23,7 @@ const Others: React.FC = () => {
                 <br />
                 predictable
               </h2>
-              <Button onClick={() => push("/breeding-guide")}>
+              <Button onClick={() => push("/breeding-simulator")}>
                 CHECK BREEDING GUIDE
               </Button>
             </div>

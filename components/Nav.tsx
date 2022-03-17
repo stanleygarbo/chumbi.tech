@@ -80,10 +80,20 @@ const Nav = () => {
                 Breeding Simulator
               </Link>
             </li>
-
+            {/* 
             <li className={router.pathname === "/donate" ? "active" : ""}>
               <Link href="/donate" passHref>
                 Donate
+              </Link>
+            </li> */}
+
+            <li
+              className={
+                router.pathname === "/avatar-generator" ? "active" : ""
+              }
+            >
+              <Link href="/avatar-generator" passHref>
+                Avatar Generator
               </Link>
             </li>
           </ul>
@@ -173,9 +183,18 @@ const Nav = () => {
               </Link>
             </li>
 
-            <li className={router.pathname === "/donate" ? "active" : ""}>
+            {/* <li className={router.pathname === "/donate" ? "active" : ""}>
               <Link href="/donate" passHref>
                 <a onClick={() => setIsMenuOpen(false)}>Donate</a>
+              </Link>
+            </li> */}
+            <li
+              className={
+                router.pathname === "/avatar-generator" ? "active" : ""
+              }
+            >
+              <Link href="/avatar-generator" passHref>
+                <a onClick={() => setIsMenuOpen(false)}>Avatar Generator</a>
               </Link>
             </li>
           </ul>
