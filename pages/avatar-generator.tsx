@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import { Head } from "next/document";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import MaleAvatar from "../components/avatar-generator/MaleAvatar";
@@ -50,6 +51,14 @@ const AvatarGenerator: NextPage = () => {
 
   return (
     <Container className="hero" colors={colors}>
+      <Head>
+        <title>Avatar Generator | Chumbi Technologies</title>
+        <meta
+          name="description"
+          content="Show off your avatar in chumbi valley and customize it to your liking."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="wrapper">
         <MaleAvatar
           coat={features.coat.selecting}
