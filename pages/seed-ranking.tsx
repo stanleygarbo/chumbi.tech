@@ -36,6 +36,8 @@ const SeedRankingPage: NextPage = () => {
     staleTime: Infinity,
   });
 
+  console.log(ChumbiQuery);
+
   const { screenWidth } = useScreenSize();
 
   const { data } = useQuery<{ [key: string]: number }[]>(

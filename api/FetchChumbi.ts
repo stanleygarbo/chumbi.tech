@@ -3,7 +3,7 @@ import { IFetchChumbiQuery } from "../interfaces/api/IFetchChumbi";
 
 const FetchChumbi = (query: IFetchChumbiQuery) => {
   return axios
-    .get(`https://api-gateway.chumbi.tech/chumbi-ranking/`, { params: query })
+    .get(`http://localhost:3000/chumbi/`, { params: query })
     .then((res) => res.data);
 };
 

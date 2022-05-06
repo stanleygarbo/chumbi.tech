@@ -2,7 +2,7 @@ import axios from "axios";
 
 const FetchSingleChumbi = (id: number) => {
   return axios
-    .get(`https://api-gateway.chumbi.tech/chumbi/${id}`)
+    .get(`http://localhost:3000/chumbi/${id}`)
     .then((res) => res.data);
 };
 
