@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Head } from "next/document";
+import Head from "next/head";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import MaleAvatar from "../components/avatar-generator/MaleAvatar";

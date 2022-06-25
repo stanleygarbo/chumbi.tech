@@ -13,13 +13,13 @@ import { IColors } from "../interfaces/IColors";
 import Modal from "react-modal";
 import { CgClose } from "react-icons/cg";
 import { filterObj } from "../interfaces/seed-ranking/IFilter";
-import FetchChumbiFilter from "../api/FetchChumbiFilters";
 import { useRouter } from "next/router";
 import QueryString from "qs";
 import PagePicker from "../components/seed-ranking/PagePicker";
 import ChumbiInfo from "../components/finder/ChumbiInfo";
 import LimitSelector from "../components/seed-ranking/LimitSelector";
 import Head from "next/head";
+import { ChumbiTraits, ChumbiTraitsObj } from "../chumbi-traits/ChumbiTraits";
 
 const SeedRankingPage: NextPage = () => {
   const [query, setQuery] = useState<IFetchChumbiQuery>({
@@ -36,13 +36,11 @@ const SeedRankingPage: NextPage = () => {
     staleTime: Infinity,
   });
 
-  console.log(ChumbiQuery);
-
   const { screenWidth } = useScreenSize();
 
-  const { data } = useQuery<{ [key: string]: number }[]>(
+  const { data } = useQuery<ChumbiTraitsObj>(
     "ChumbiRankingFilter",
-    FetchChumbiFilter,
+    () => ChumbiTraits(),
     {
       staleTime: Infinity,
     }
@@ -51,7 +49,7 @@ const SeedRankingPage: NextPage = () => {
 
   useEffect(() => {
     if (queryString) router.push(`/seed-ranking?${queryString}`);
-  }, [queryString]);
+  }, [queryString, router.push]);
 
   useEffect(() => {
     let _isMounted = true;
@@ -81,7 +79,7 @@ const SeedRankingPage: NextPage = () => {
             if (j.name === i[0]) {
               const obj: filterObj = {
                 name: i[0],
-                isOpened: i[0] === "Main Type",
+                isOpened: i[0] === "mainType",
                 properties: i[1],
                 checkedProperties: j.value,
                 checked: j.value.length,
@@ -95,7 +93,7 @@ const SeedRankingPage: NextPage = () => {
           if (!alreadyIn.includes(i[0])) {
             const obj: filterObj = {
               name: i[0],
-              isOpened: i[0] === "Main Type",
+              isOpened: i[0] === "mainType",
               properties: i[1],
               checkedProperties: [],
               checked: 0,
@@ -106,7 +104,7 @@ const SeedRankingPage: NextPage = () => {
         } else {
           const obj: filterObj = {
             name: i[0],
-            isOpened: i[0] === "Main Type",
+            isOpened: i[0] === "mainType",
             properties: i[1],
             checkedProperties: [],
             checked: 0,
@@ -117,18 +115,12 @@ const SeedRankingPage: NextPage = () => {
       });
     }
 
-    const filtered = arr.filter((i) => i.name !== "Main Type");
-    const mainType = arr.filter((i) => i.name === "Main Type");
-
-    const newArr = [...filtered];
-    newArr.unshift(...mainType);
-
-    if (_isMounted) setFilters(newArr);
+    if (_isMounted) setFilters(arr);
 
     return () => {
       _isMounted = false;
     };
-  }, [data]);
+  }, [data, router.asPath]);
 
   return (
     <Container className="hero" colors={colors}>
@@ -227,10 +219,14 @@ const SeedRankingPage: NextPage = () => {
 
         {ChumbiQuery.data && query.page && (
           <PagePicker
-            maxPage={ChumbiQuery.data.maxPages}
+            maxPage={ChumbiQuery.data.maxPage}
             currentPage={query.page}
             onPagePick={(selectedPage) => {
-              setQuery({ page: selectedPage, filter: query.filter });
+              setQuery({
+                page: selectedPage,
+                filter: query.filter,
+                limit: query.limit,
+              });
               setQueryString(
                 QueryString.stringify(
                   {

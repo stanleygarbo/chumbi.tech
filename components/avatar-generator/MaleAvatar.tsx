@@ -77,7 +77,7 @@ const MaleAvatar: React.FC<IAvatar> = ({
       };
       bgImg.src = "/chumbi-bg.jpg";
     }
-  }, [canvasRef, eyes, skin, coat, coatTrim, hair, isBGLoaded]);
+  }, [canvasRef, eyes, skin, coat, coatTrim, hair, isBGLoaded, res]);
 
   return (
     <Container colors={colors}>

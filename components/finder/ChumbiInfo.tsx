@@ -21,31 +21,26 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
   const router = useRouter();
 
   const { colors } = useTheme();
-  const mainType = data?.attributes[6].value;
-  const coatType = data?.attributes[11].value;
-  const seed = data?.attributes[8].value;
-  const highestRarityScore = data?.chart
-    ? Math.max.apply(
-        Math,
-        data.chart.map(function (o: any) {
-          return o.score;
-        })
-      )
-    : null;
+  const mainType = data?.mainType;
+  const coatType = data?.coatType;
+  const seed = data?.seed;
+  const highestRarityScore = data?.rarityScore;
+
+  console.log(data);
 
   return (
     <Container colors={colors}>
       <div className="side side--img">
-        {data?.imagehash && (
+        {data?.id && (
           <img
             className="side__chumbi"
-            src={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${data.edition}.png`}
+            src={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${data.id}.png`}
             alt=""
           />
         )}
 
         <a
-          href={`https://opensea.io/assets/matic/0x5492ef6aeeba1a3896357359ef039a8b11621b45/${data?.edition}`}
+          href={`https://opensea.io/assets/matic/0x5492ef6aeeba1a3896357359ef039a8b11621b45/${data?.id}`}
           target="blank"
         >
           <img src="/icons/opensea.svg" alt="" width={30} />
@@ -60,7 +55,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
         }`}
       >
         <h1>
-          {data?.name} #{data?.edition}
+          {data?.name} #{data?.id}
         </h1>
 
         {data && (
@@ -112,16 +107,75 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
             </div>
           </div>
         )}
-        {data?.raritytraitscore && (
+        {data?.rarityScore && (
           <>
-            <h2>Rarity Score: {data.raritytraitscore.toFixed(2)}</h2>
-            <h2>Ranked #{data.rarityrank}</h2>
+            {/* <h2>Rarity Score: {data.rarityScore.toFixed(2)}</h2> */}
+            <h2>Ranked #{data.rank}</h2>
           </>
         )}
-        {data?.chart && (
+
+        <div className="side__body-parts">
+          <h2>Body Parts</h2>
+          <p>
+            Coat:{" "}
+            <span className="side__body-parts__highlight">
+              {data?.coatVariation}
+            </span>
+          </p>
+          <p>
+            Shade:{" "}
+            <span className="side__body-parts__highlight">{data?.shade}</span>
+          </p>
+          <p>
+            Pattern:{" "}
+            <span className="side__body-parts__highlight">{data?.pattern}</span>
+          </p>
+          <p>
+            Eyes:{" "}
+            <span className="side__body-parts__highlight">{data?.eyes}</span>
+          </p>
+          <p>
+            Mouth:{" "}
+            <span className="side__body-parts__highlight">{data?.mouth}</span>
+          </p>
+          <p>
+            Ears:{" "}
+            <span className="side__body-parts__highlight">{data?.ears}</span>
+          </p>
+          <p>
+            Horns:{" "}
+            <span className="side__body-parts__highlight">{data?.horns}</span>
+          </p>
+        </div>
+
+        <div className="side__special-att">
+          <h2>Special attributes</h2>
+          <section>
+            <p>
+              Mini:{" "}
+              <span className="side__special-att__highlight">
+                {data?.size === "mini" ? "Yes" : "No"}
+              </span>
+            </p>
+            <p>
+              Pure:{" "}
+              <span className="side__special-att__highlight">
+                {data?.coatType === data?.mainType ? "Yes" : "No"}
+              </span>
+            </p>
+            <p>
+              Shiny:{" "}
+              <span className="side__special-att__highlight">
+                {data?.isShiny ? "Yes" : "No"}
+              </span>
+            </p>
+          </section>
+        </div>
+
+        {/* {data?.chart && (
           <div className="side__rarity-score">
             {data?.chart.map(
-              (i, idx: number) =>
+              (i:any, idx: number) =>
                 i.traitType !== "Breed Count" && (
                   <section key={idx}>
                     <div className="side__rarity-score__desc">
@@ -151,7 +205,7 @@ const ChumbiInfo: React.FC<IChumbiInfo> = ({ id }) => {
                 )
             )}
           </div>
-        )}
+        )} */}
       </div>
     </Container>
   );
@@ -246,7 +300,29 @@ const Container = styled.div<{ colors: IColors }>`
         color: ${colors.text2};
       }
 
-      &__rarity-score {
+      &__body-parts,
+      &__special-att {
+        p {
+          color: ${colors.text2};
+          font-size: 14px;
+        }
+        &__highlight {
+          background: ${colors.accent};
+          color: #fff;
+          border-radius: 100px;
+          padding: 0 10px;
+          font-size: 12px;
+          text-transform: capitalize;
+        }
+      }
+      &__special-att {
+        section {
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      /* &__rarity-score {
         &__desc {
           color: ${colors.text2};
           font-size: 13px;
@@ -276,7 +352,7 @@ const Container = styled.div<{ colors: IColors }>`
             border-radius: 50px;
           }
         }
-      }
+      } */
     }
 
     @media (max-width: 752px) {

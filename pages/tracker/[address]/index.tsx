@@ -9,7 +9,7 @@ const Index = () => {
     if (router.query.address && isWalletAddressValid(router.query.address)) {
       router.push(`/tracker/${router.query.address}/chumbi`);
     }
-  }, [router.query]);
+  }, [router.query, router.push]);
 
   return null;
 };

@@ -10,20 +10,19 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
       {linkTo
         ? data.map((i) => (
             <Link
-              key={i.edition}
-              href={`${linkTo}${i.edition}`}
-              as={linkAs ? `${linkAs}${i.edition}` : undefined}
+              key={i.id}
+              href={`${linkTo}${i.id}`}
+              as={linkAs ? `${linkAs}${i.id}` : undefined}
             >
               <a>
                 <ChumbiCard
                   id={i.id}
-                  edition={i.edition}
-                  image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${i.edition}.png`}
+                  image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${i.id}.png`}
                   name={i.name}
-                  seed={i.attributes[8].value.toString().toLowerCase()}
-                  maintype={i.attributes[6].value.toString().toLowerCase()}
-                  rarityrank={i.rarityrank}
-                  coattype={i.attributes[11].value.toString().toLowerCase()}
+                  seed={i.seed?.toLowerCase()}
+                  maintype={i.mainType?.toLowerCase()}
+                  rarityrank={i.rank}
+                  coattype={i.coatType?.toLowerCase()}
                 />
               </a>
             </Link>
@@ -31,14 +30,13 @@ const ChumbiCards: React.FC<IChumbiCards> = ({ data, linkTo, linkAs }) => {
         : data.map((i) => (
             <ChumbiCard
               id={i.id}
-              key={i.edition}
-              edition={i.edition}
-              image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${i.edition}.png`}
+              key={i.id}
+              image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${i.id}.png`}
               name={i.name}
-              seed={i.attributes[8].value.toString().toLowerCase()}
-              maintype={i.attributes[6].value.toString().toLowerCase()}
-              rarityrank={i.rarityrank}
-              coattype={i.attributes[11].value.toString().toLowerCase()}
+              seed={i.seed?.toLowerCase()}
+              maintype={i.mainType?.toLowerCase()}
+              rarityrank={i.rank}
+              coattype={i.coatType?.toLowerCase()}
             />
           ))}
     </Container>

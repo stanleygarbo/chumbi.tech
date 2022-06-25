@@ -45,31 +45,21 @@ const BreedingSim: React.FC = () => {
       return {
         parent1: {
           tier: getTierByType(
-            Chumbi1Query.data.attributes[6].value.toString().toLowerCase()
+            Chumbi1Query.data.typeTier!.toString().toLowerCase()
           ),
           isShiny:
-            Chumbi1Query.data.attributes[12].value.toString().toLowerCase() !==
-            "not shiny",
-          isMini:
-            Chumbi1Query.data.attributes[10].value.toString().toLowerCase() ===
-            "mini",
-          coatType: Chumbi1Query.data.attributes[11].value
-            .toString()
-            .toLowerCase(),
+            Chumbi1Query.data.isShiny!.toString().toLowerCase() !== "not shiny",
+          isMini: Chumbi1Query.data.size!.toString().toLowerCase() === "mini",
+          coatType: Chumbi1Query.data.coatType!.toString().toLowerCase(),
         },
         parent2: {
           tier: getTierByType(
-            Chumbi2Query.data.attributes[6].value.toString().toLowerCase()
+            Chumbi2Query.data.typeTier!.toString().toLowerCase()
           ),
           isShiny:
-            Chumbi2Query.data.attributes[12].value.toString().toLowerCase() !==
-            "not shiny",
-          isMini:
-            Chumbi2Query.data.attributes[10].value.toString().toLowerCase() ===
-            "mini",
-          coatType: Chumbi2Query.data.attributes[11].value
-            .toString()
-            .toLowerCase(),
+            Chumbi2Query.data.isShiny!.toString().toLowerCase() !== "not shiny",
+          isMini: Chumbi2Query.data.size!.toString().toLowerCase() === "mini",
+          coatType: Chumbi2Query.data.coatType!.toString().toLowerCase(),
         },
       };
   }, [Chumbi1Query.data, Chumbi2Query.data]);
@@ -94,19 +84,12 @@ const BreedingSim: React.FC = () => {
               {Chumbi1Query.data ? (
                 <ChumbiCard
                   id={Chumbi1Query.data.id}
-                  edition={Chumbi1Query.data.edition}
-                  image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${Chumbi1Query.data.edition}.png`}
+                  image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${Chumbi1Query.data.id}.png`}
                   name={Chumbi1Query.data.name}
-                  seed={Chumbi1Query.data.attributes[8].value
-                    .toString()
-                    .toLowerCase()}
-                  maintype={Chumbi1Query.data.attributes[6].value
-                    .toString()
-                    .toLowerCase()}
-                  rarityrank={Chumbi1Query.data.rarityrank}
-                  coattype={Chumbi1Query.data.attributes[11].value
-                    .toString()
-                    .toLowerCase()}
+                  seed={Chumbi1Query.data.seed}
+                  maintype={Chumbi1Query.data.mainType}
+                  rarityrank={Chumbi1Query.data.rank}
+                  coattype={Chumbi1Query.data.coatType}
                 />
               ) : (
                 <img
@@ -140,18 +123,15 @@ const BreedingSim: React.FC = () => {
               {Chumbi2Query.data ? (
                 <ChumbiCard
                   id={Chumbi2Query.data.id}
-                  edition={Chumbi2Query.data.edition}
-                  image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${Chumbi2Query.data.edition}.png`}
+                  image={`https://res.cloudinary.com/dr4q1cnig/image/upload/w_500,h_500/v1644474238/chumbi/${Chumbi2Query.data.id}.png`}
                   name={Chumbi2Query.data.name}
-                  seed={Chumbi2Query.data.attributes[8].value
-                    .toString()
+                  seed={Chumbi2Query.data.seed?.toString().toLowerCase()}
+                  maintype={Chumbi2Query.data.mainType
+                    ?.toString()
                     .toLowerCase()}
-                  maintype={Chumbi2Query.data.attributes[6].value
-                    .toString()
-                    .toLowerCase()}
-                  rarityrank={Chumbi2Query.data.rarityrank}
-                  coattype={Chumbi2Query.data.attributes[11].value
-                    .toString()
+                  rarityrank={Chumbi2Query.data.rank}
+                  coattype={Chumbi2Query.data
+                    .coatType!.toString()
                     .toLowerCase()}
                 />
               ) : (

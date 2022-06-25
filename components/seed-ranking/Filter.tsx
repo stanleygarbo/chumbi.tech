@@ -12,7 +12,6 @@ import { CgClose } from "react-icons/cg";
 import * as Yup from "yup";
 import { FormikField } from "../FormikField";
 import { Form, Formik } from "formik";
-import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { useScreenSize } from "../../contexts/screenSizeContext";
 
@@ -65,7 +64,7 @@ const Filter: React.FC<IFilter> = ({
             setQuery({ page: 1, filter: [], limit: query.limit });
             setQueryString(
               qs.stringify(
-                { page: query.page, filter: [] },
+                { page: query.page, limit: query.limit, filter: [] },
                 {
                   encode: false,
                 }
@@ -127,7 +126,9 @@ const Filter: React.FC<IFilter> = ({
                   <div className="property__header__arrow">
                     {filter.isOpened ? <VscTriangleUp /> : <VscTriangleDown />}
                   </div>
-                  <div className="property__header__title">{filter.name}</div>
+                  <div className="property__header__title">
+                    {filter.name.replace(/([A-Z])/g, " $1")}
+                  </div>
                   {filter.checked ? (
                     <div className="property__header__count">
                       {filter.checked}
@@ -136,8 +137,8 @@ const Filter: React.FC<IFilter> = ({
                 </div>
                 <div
                   className={`property__items ${
-                    (filter.name === "Main Type" ||
-                      filter.name === "Coat Type") &&
+                    (filter.name === "mainType" ||
+                      filter.name === "coatType") &&
                     "property__items--type"
                   } ${filter.isOpened ? "property__items--opened" : ""}`}
                 >
@@ -212,6 +213,7 @@ const Filter: React.FC<IFilter> = ({
 
                                   const newQueryFilter = [...query.filter];
                                   let page: number | undefined = 1;
+                                  let limit: number | undefined = 20;
 
                                   const newQueryFilter_idxToUpdate =
                                     newQueryFilter.findIndex(
@@ -231,7 +233,7 @@ const Filter: React.FC<IFilter> = ({
 
                                   setQuery({
                                     page,
-                                    limit: query.limit,
+                                    limit,
                                     filter: newQueryFilter,
                                   });
 
@@ -239,6 +241,7 @@ const Filter: React.FC<IFilter> = ({
                                     qs.stringify(
                                       {
                                         page,
+                                        limit,
                                         filter: newQueryFilter,
                                       },
                                       {
@@ -283,7 +286,8 @@ const Filter: React.FC<IFilter> = ({
 
                                   if (newFilter) {
                                     setQuery({
-                                      ...query,
+                                      page: query.page,
+                                      limit: query.limit,
                                       filter: newFilter,
                                     });
                                     setQueryString(
@@ -448,6 +452,7 @@ const Container = styled.div<{ colors: IColors }>`
         &__title {
           color: ${colors.text1};
           margin-left: 10px;
+          text-transform: capitalize;
         }
 
         &__count {

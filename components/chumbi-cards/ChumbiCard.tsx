@@ -6,7 +6,6 @@ import { IChumbiCard } from "../../interfaces/chumbi-cards/IChumbiCard";
 import { IColors } from "../../interfaces/IColors";
 
 const ChumbiCard: React.FC<IChumbiCard> = ({
-  edition,
   name,
   seed,
   image,
@@ -26,7 +25,7 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
     <Container colors={colors}>
       <div className="header">
         <div className="header__id">
-          Ranked #{rarityrank} [{id}]
+          Ranked #{rarityrank} {(rarityrank / 4096) * 100}
         </div>
         <section>
           <Image
@@ -81,12 +80,12 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
       </div>
       <div className="footer">
         <div className="footer__name">
-          {name} #{edition}
+          {name} #{id}
         </div>
         <div className="footer__rarityrank">
           <div
             className="footer__rarityrank__point"
-            style={{ width: `${100 - (rarityrank / 4096) * 100}%` }}
+            style={{ width: `${(rarityrank / 4096) * 100}%` }}
           ></div>
         </div>
         <div className="footer__ranking">
@@ -194,7 +193,7 @@ const Container = styled.div<{ colors: IColors }>`
           &::before {
             content: "";
             position: absolute;
-            right: 0;
+            right: -5px;
             width: 10px;
             height: 10px;
             background: #fff;
