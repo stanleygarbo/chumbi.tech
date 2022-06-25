@@ -24,9 +24,7 @@ const ChumbiCard: React.FC<IChumbiCard> = ({
   return (
     <Container colors={colors}>
       <div className="header">
-        <div className="header__id">
-          Ranked #{rarityrank} {(rarityrank / 4096) * 100}
-        </div>
+        <div className="header__id">Ranked #{rarityrank}</div>
         <section>
           <Image
             src={`/seed/${seed}.webp`}
