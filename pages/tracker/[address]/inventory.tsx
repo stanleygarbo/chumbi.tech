@@ -30,7 +30,7 @@ const InventoryPage: NextPage = () => {
   useEffect(() => {
     if (address && isWalletAddressValid(address))
       setCurrent(address.toString());
-  }, [address,setCurrent]);
+  }, [address]);
 
   if (address && isWalletAddressValid(address))
     return (

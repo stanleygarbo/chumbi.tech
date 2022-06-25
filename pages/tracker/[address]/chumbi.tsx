@@ -43,7 +43,7 @@ const Chumbi: NextPage = () => {
     return () => {
       _isMounted = false;
     };
-  }, [address, totalChumbi, setCurrent]);
+  }, [address, totalChumbi]);
 
   if (address && isWalletAddressValid(address))
     return (

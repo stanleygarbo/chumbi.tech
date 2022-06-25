@@ -79,7 +79,7 @@ const StakingRewardsPage: NextPage = () => {
     return () => {
       _isMounted = false;
     };
-  }, [address, stakingData, totalCHMB, setCurrent]);
+  }, [address, stakingData, totalCHMB, ]);
 
   if (address && isWalletAddressValid(address))
     return (
