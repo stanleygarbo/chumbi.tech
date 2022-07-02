@@ -43,6 +43,8 @@ const Filter: React.FC<IFilter> = ({
   const router = useRouter();
   const { screenWidth } = useScreenSize();
 
+  console.log(filters);
+
   return (
     <Container colors={colors}>
       <div className="filter">
@@ -181,7 +183,8 @@ const Filter: React.FC<IFilter> = ({
                       (property, propertyIdx) =>
                         property[0]
                           .toLowerCase()
-                          .includes(filter.txtFilter.toLowerCase()) ? (
+                          .includes(filter.txtFilter.toLowerCase()) &&
+                        property[0] !== "name" ? (
                           <div
                             key={propertyIdx}
                             className={`property__items__item`}
@@ -306,8 +309,8 @@ const Filter: React.FC<IFilter> = ({
                             >
                               <CheckBoxContent>
                                 <section>
-                                  {(filter.name === "Main Type" ||
-                                    filter.name === "Coat Type") && (
+                                  {(filter.name === "mainType" ||
+                                    filter.name === "coatType") && (
                                     <Image
                                       src={`/types/${property[0].toLowerCase()}.png`}
                                       width={25}
