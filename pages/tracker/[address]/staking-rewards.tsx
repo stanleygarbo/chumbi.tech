@@ -81,6 +81,17 @@ const StakingRewardsPage: NextPage = () => {
     };
   }, [address, stakingData, totalCHMB]);
 
+  const dateFromNow = Number(
+    moment
+      .duration(
+        moment(new Date()).diff(
+          moment("Friday, January 14, 2022 11:39:27.738 AM")
+        )
+      )
+      .asDays()
+      .toFixed(0)
+  );
+
   if (address && isWalletAddressValid(address))
     return (
       <Container className="tracker" style={{ backgroundColor: colors.bg2 }}>
@@ -101,52 +112,22 @@ const StakingRewardsPage: NextPage = () => {
             pools={[
               {
                 name: `${
-                  90 -
-                  Number(
-                    moment
-                      .duration(
-                        moment(new Date()).diff(
-                          moment("Friday, January 14, 2022 11:39:27.738 AM")
-                        )
-                      )
-                      .asDays()
-                      .toFixed(0)
-                  )
-                } days`,
+                  90 - dateFromNow < 1 ? "CLOSED" : `${90 - dateFromNow} days`
+                } `,
                 APR: stakingData90Query.data?.APR,
                 formula: "SC / TS * 100",
               },
               {
                 name: `${
-                  180 -
-                  Number(
-                    moment
-                      .duration(
-                        moment(new Date()).diff(
-                          moment("Friday, January 14, 2022 11:39:27.738 AM")
-                        )
-                      )
-                      .asDays()
-                      .toFixed(0)
-                  )
-                } days`,
+                  180 - dateFromNow < 1 ? "CLOSED" : `${180 - dateFromNow} days`
+                } `,
                 APR: stakingData180Query.data?.APR,
                 formula: "SC / TS * 150",
               },
               {
                 name: `${
-                  365 -
-                  Number(
-                    moment
-                      .duration(
-                        moment(new Date()).diff(
-                          moment("Friday, January 14, 2022 11:39:27.738 AM")
-                        )
-                      )
-                      .asDays()
-                      .toFixed(0)
-                  )
-                } days`,
+                  365 - dateFromNow < 1 ? "CLOSED" : `${365 - dateFromNow} days`
+                } `,
                 APR: stakingData365Query.data?.APR,
                 formula: "SC / TS * 196.72129",
               },

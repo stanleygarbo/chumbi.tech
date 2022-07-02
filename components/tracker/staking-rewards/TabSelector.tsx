@@ -11,58 +11,39 @@ const TabSelector: React.FC<ITabSelector> = ({
 }) => {
   const { colors } = useTheme();
 
+  const dateFromNow = Number(
+    moment
+      .duration(
+        moment(new Date()).diff(
+          moment("Friday, January 14, 2022 11:39:27.738 AM")
+        )
+      )
+      .asDays()
+      .toFixed(0)
+  );
+
   return (
     <Container colors={colors}>
       <button
         onClick={() => setSelectedDuration(90)}
         className={`${selectedDuration === 90 ? "active" : ""}`}
       >
-        {90 -
-          Number(
-            moment
-              .duration(
-                moment(new Date()).diff(
-                  moment("Friday, January 14, 2022 11:39:27.738 AM")
-                )
-              )
-              .asDays()
-              .toFixed(0)
-          )}{" "}
-        Days
+        {90 - dateFromNow < 1 ? "" : 90 - dateFromNow}&nbsp;
+        {90 - dateFromNow < 1 ? "CLOSED" : "Days"}
       </button>
       <button
         onClick={() => setSelectedDuration(180)}
         className={`${selectedDuration === 180 ? "active" : ""}`}
       >
-        {180 -
-          Number(
-            moment
-              .duration(
-                moment(new Date()).diff(
-                  moment("Friday, January 14, 2022 11:39:27.738 AM")
-                )
-              )
-              .asDays()
-              .toFixed(0)
-          )}{" "}
-        Days
+        {180 - dateFromNow < 1 ? "" : 180 - dateFromNow}&nbsp;
+        {180 - dateFromNow < 1 ? "CLOSED" : "Days"}
       </button>
       <button
         onClick={() => setSelectedDuration(365)}
         className={`${selectedDuration === 365 ? "active" : ""}`}
       >
-        {365 -
-          Number(
-            moment
-              .duration(
-                moment(new Date()).diff(
-                  moment("Friday, January 14, 2022 11:39:27.738 AM")
-                )
-              )
-              .asDays()
-              .toFixed(0)
-          )}{" "}
-        Days
+        {365 - dateFromNow < 1 ? "" : 365 - dateFromNow}&nbsp;
+        {365 - dateFromNow < 1 ? "CLOSED" : "Days"}
       </button>
     </Container>
   );
