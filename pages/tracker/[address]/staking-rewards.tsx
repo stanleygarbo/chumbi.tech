@@ -29,37 +29,37 @@ const StakingRewardsPage: NextPage = () => {
   const [totalTokens, setTotalTokens] = useState<ITokens>({
     CHMB: -1,
   });
-  const { stakingData, totalCHMB, setCurrent } = useWallet();
+  const { stakingData, totalCHMB, setCurrent, current } = useWallet();
   const { colors } = useTheme();
   const router = useRouter();
   const { address } = router.query;
 
   const stakingData90Query = useQuery(
-    ["StakingData90", address],
+    ["StakingData90", current],
     () => {
       return stakingData ? stakingData({ duration: 90 }) : null;
     },
     {
       staleTime: Infinity,
-      enabled: !!(address && isWalletAddressValid(address)),
+      enabled: !!(current && isWalletAddressValid(current)),
     }
   );
 
   const stakingData180Query = useQuery(
-    ["StakingData180", address],
+    ["StakingData180", current],
     () => (stakingData ? stakingData({ duration: 180 }) : null),
     {
       staleTime: Infinity,
-      enabled: !!(address && isWalletAddressValid(address)),
+      enabled: !!(current && isWalletAddressValid(current)),
     }
   );
 
   const stakingData365Query = useQuery(
-    ["StakingData365", address],
+    ["StakingData365", current],
     () => (stakingData ? stakingData({ duration: 365 }) : null),
     {
       staleTime: Infinity,
-      enabled: !!(address && isWalletAddressValid(address)),
+      enabled: !!(current && isWalletAddressValid(current)),
     }
   );
 
@@ -68,9 +68,9 @@ const StakingRewardsPage: NextPage = () => {
 
     (async function () {
       if (stakingData) {
-        if (address && isWalletAddressValid(address) && _isMounted) {
-          setCurrent(address.toString());
-          const res = await totalCHMB(address.toString());
+        if (current && isWalletAddressValid(current) && _isMounted) {
+          setCurrent(current.toString());
+          const res = await totalCHMB(current.toString());
           if (res) setTotalTokens({ CHMB: res });
         }
       }
@@ -79,7 +79,7 @@ const StakingRewardsPage: NextPage = () => {
     return () => {
       _isMounted = false;
     };
-  }, [address, stakingData, totalCHMB, ]);
+  }, [address, stakingData, totalCHMB]);
 
   if (address && isWalletAddressValid(address))
     return (
