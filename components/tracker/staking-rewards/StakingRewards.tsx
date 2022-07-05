@@ -13,6 +13,13 @@ const StakingRewards: React.FC<IStakingRewards> = ({
 }) => {
   const { colors } = useTheme();
 
+  const stakingReward =
+    stakingData?.staked !== undefined && stakingData?.rewards !== undefined
+      ? addCommaToNumber(
+          ((stakingData.rewards / stakingData.staked) * 100).toFixed(2)
+        )
+      : "---";
+
   return (
     <Container colors={colors}>
       <section>
@@ -38,16 +45,7 @@ const StakingRewards: React.FC<IStakingRewards> = ({
                   : "---"}
                 &nbsp;
                 <span className="stats__data__box__val__returns">
-                  {stakingData?.staked !== undefined &&
-                  stakingData?.rewards !== undefined
-                    ? addCommaToNumber(
-                        (
-                          (stakingData.rewards / stakingData.staked) *
-                          100
-                        ).toFixed(2)
-                      )
-                    : "---"}
-                  %
+                  {stakingReward !== "NaN" ? stakingReward : "0"}%
                 </span>
               </div>
             </div>
