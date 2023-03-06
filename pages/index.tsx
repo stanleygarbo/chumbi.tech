@@ -54,7 +54,6 @@ const Message = styled.div<{ colors: IColors }>`
     width: 100%;
     height: 50px;
     /* background: ${colors.bg1}; */
-    z-index: 1000000;
     display: flex;
     align-items: center;
 
