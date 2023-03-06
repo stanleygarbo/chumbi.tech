@@ -42,7 +42,9 @@ const ConnectWallet: React.FC = () => {
         <h2>Add wallet address</h2>
         <Formik
           validationSchema={ChubmiIDSchema}
-          initialValues={{ walletAddress: "" }}
+          initialValues={{
+            walletAddress: "0xe1E362fc8984c9E550eF52C8d03Ca41987A9E4Ff",
+          }}
           onSubmit={(values) => {
             setCurrent(values.walletAddress);
 

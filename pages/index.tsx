@@ -13,6 +13,16 @@ const Home: NextPage = () => {
 
   return (
     <Container colors={colors} isDarkMode={isDarkMode}>
+      <Message colors={colors}>
+        <div className="center">
+          <span className="center__supporting-text">This app is</span>{" "}
+          <span className="center__highlight">unmaintained</span>{" "}
+          <span className="center__supporting-text">
+            and is for demo purposes only
+          </span>
+        </div>
+      </Message>
+
       <Head>
         <title>
           Chumbi Valley tools and resources for beginners | Chumbi Technologies
@@ -34,6 +44,41 @@ const Home: NextPage = () => {
     </Container>
   );
 };
+
+const Message = styled.div<{ colors: IColors }>`
+  ${({ colors }) => css`
+    color: ${colors.text2};
+    position: absolute;
+    font-size: 13px;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    /* background: ${colors.bg1}; */
+    z-index: 1000000;
+    display: flex;
+    align-items: center;
+
+    .center {
+      width: 1140px;
+      padding: 0 20px;
+      margin: 0 auto;
+
+      &__highlight {
+        color: ${colors.danger};
+        background: ${colors.danger}30;
+        padding: 0 5px;
+        border: 1px solid ${colors.danger};
+        border-radius: 5px;
+      }
+
+      @media (max-width: 621px) {
+        &__supporting-text {
+          display: none;
+        }
+      }
+    }
+  `}
+`;
 
 const Container = styled.div<{ colors: IColors; isDarkMode: boolean }>`
   ${({ colors, isDarkMode }) => css`
