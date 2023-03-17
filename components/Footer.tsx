@@ -87,7 +87,7 @@ const Footer = () => {
             <h3>About</h3>
             <p>
               Chumbi Technologies is a fan-made website dedicated to Chumbi
-              Valley, developed by Digital Mad Lad — a poor man.
+              Valley, developed by Digital Mad Lad — a poor teenager.
               Chumbi.Tech&apos;s goal is to provide chumbi villagers with guides
               and tools that are free and of high quality.
             </p>
